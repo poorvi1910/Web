@@ -17,7 +17,22 @@ id="username": This attribute assigns an identifier to the input field. The valu
 
 name="username": This attribute specifies the name of the input field. When the form containing this input field is submitted, the data entered by the user will be sent to the server with the specified name as the key. It is important for form handling and processing on the server-side.
 
-
+### 2.Basic Flask syntax: ###
+```
+# an object of WSGI application 
+from flask import Flask     
+app = Flask(__name__)   # Flask constructor 
+  
+# A decorator used to tell the application 
+# which URL is associated function 
+@app.route('/')       
+def hello(): 
+    return 'HELLO'
+  
+if __name__=='__main__': 
+   app.run()
+```
+ 
 ## Exploits
 
 ## Vulnerabilities
