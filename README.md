@@ -32,7 +32,10 @@ def hello():
 if __name__=='__main__': 
    app.run()
 ```
-### 3.Connecting SQLite with Flask: ###
+
+### 3.Templating with Jinja2 ###
+
+### 4.Connecting SQLite with Flask: ###
 ```
 import sqlite3
 .
