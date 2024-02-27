@@ -32,7 +32,19 @@ def hello():
 if __name__=='__main__': 
    app.run()
 ```
- 
+### 3.Connecting SQLite with Flask: ###
+```
+import sqlite3
+.
+.
+with sqlite3.connect("/home/lunaniverse/books.db") as con: 
+    cursor = con.cursor() 
+    cursor.execute("INSERT INTO lib (id, name, author, copies) VALUES (?,?,?,?)", (id, name, author, copies)) 
+    con.commit() 
+.
+.
+```
+
 ## Errors
 
 1) The entire path of the database must be given or it does not identify the tables. It will not ahow that database is not found, it shows table is not found and we waste a lot of time trying to get the table instead.
