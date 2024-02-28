@@ -48,9 +48,32 @@ with sqlite3.connect("/home/lunaniverse/books.db") as con:
 .
 ```
 
+### 5.How to hide the login details
+```
+@app.route('/', methods = ['GET', 'POST'])  
+def login(): 
+    error = None     
+    if request.method == 'POST': 
+        con = sqlite3.connect("/home/lunaniverse/books.db")
+        cur = con.cursor()
+        cur.execute("SELECT * from admin")
+        record=cur.fetchall()
+
+        for row in record:
+            if request.form['username']==row[0] and request.form['password']==row[1]:
+                return redirect(url_for('home'))
+                break
+            else: 
+                error = 'Invalid username or password. Please try again !'
+        
+             
+    return render_template('login.html', error = error)
+```
+
 ## Errors
 
 1) The entire path of the database must be given or it does not identify the tables. It will not ahow that database is not found, it shows table is not found and we waste a lot of time trying to get the table instead.
 2) WHile inputting, the name field must be written carefully. I used a different variable in that and the js file and spent a bunch of time trying to figure out what is wrong.
 
 ## Vulnerabilities
+1) Initially i had just placed the username and password in the js file but that would be visible to anyone who would inspect the page. Hence i placed inside a database instead.
