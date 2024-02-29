@@ -12,8 +12,13 @@ def login():
     if request.method == 'POST': 
         con = sqlite3.connect("/home/lunaniverse/books.db")
         cur = con.cursor()
-        cur.execute("SELECT * from admin")
-        record=cur.fetchall()
+        try:
+            cur.execute("SELECT * from admin")
+        except sqlite3.OperationalError as e:
+            print(e)
+            cur.execute("CREATE TABLE admin (...);")
+            cur.execute("SELECT * from admin")
+        record = cur.fetchall()
 
         for row in record:
             if request.form['username']==row[0] and request.form['password']==row[1]:
