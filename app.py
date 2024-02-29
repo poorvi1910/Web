@@ -16,7 +16,7 @@ def login():
             cur.execute("SELECT * from admin")
         except sqlite3.OperationalError as e:
             print(e)
-            cur.execute("CREATE TABLE admin (...);")
+            cur.execute("CREATE TABLE admin (username char(50), password char(50));")
             cur.execute("SELECT * from admin")
         record = cur.fetchall()
 
