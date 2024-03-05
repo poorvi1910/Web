@@ -70,9 +70,10 @@ def login():
     return render_template('login.html', error = error)
 ```
 
+
 ## Errors
 
-1) The entire path of the database must be given or it does not identify the tables. It will not ahow that database is not found, it shows table is not found and we waste a lot of time trying to get the table instead.
+1) The databae file must be created in the project folder itself or the code will not be able to  find it.
 2) WHile inputting, the name field must be written carefully. I used a different variable in that and the js file and spent a bunch of time trying to figure out what is wrong.
 
 ## Vulnerabilities
