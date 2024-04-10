@@ -9,3 +9,6 @@ I first thought its an unsafe-inline vulnerability but i tried a few payloads an
 
 Then I went to https://csp-evaluator.withgoogle.com/ site 
 ![image](https://github.com/poorvi1910/Web/assets/146640913/b326cd9c-1224-4b9a-a50f-0079ceb1ee33)
+Could not find any loop hole as such
+
+Also logged as a new registered user and tried payloads in the add book section.
