@@ -13,4 +13,4 @@ Could not find any loop hole as such
 
 Also logged as a new registered user and tried payloads in the add book section.
 
-Since i am trying to log in as admin, as in the source file i put the username as admin and tried payloads in the password field but hae not been able to bypass till now
+Since i am trying to log in as admin, as in the source file i put the username as admin and tried payloads in the password field but hae not been able to bypass till now. I looked athe source code for the register and login fields and couldn't spot anything off
