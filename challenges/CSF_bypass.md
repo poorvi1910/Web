@@ -13,4 +13,9 @@ Could not find any loop hole as such
 
 Also logged as a new registered user and tried payloads in the add book section.
 
-Since i am trying to log in as admin, as in the source file i put the username as admin and tried payloads in the password field but hae not been able to bypass till now. I looked athe source code for the register and login fields and couldn't spot anything off
+## FRESH APPROACH
+
+I Logged on to the website as a new user, performed a delete operation, copied as curl and put it into https://curlconverter.com/ to make my python payload script.<br>
+I then looked at the source code and in the script.js file, we can see that there has been usage of innerHTML which lets us know that the book adding field is susceptible to xss. <br>
+So now we need to make a payload that would perform xss (while keeping in mind the csp policy used) that would give us the books table that only admin can access and has our flag and send it using the python script
+
