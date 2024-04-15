@@ -40,7 +40,7 @@ Payback Time -
 
 Privacy Policy Inspection -
 
-Product Tampering -
+Product Tampering - If we add a product to basket and view the request, we see produuctid, basketid and quantity. If we just add another basket id below ours, and change the product id to another new one and send the request, we are able to add the item to that basket as well
  
 Reset Jim's Password - If we look at jim's reviews, we see he mentions a 'replicator','tricorder' and 'Starfleet'. All of these are a part of star trek. if we search jim star trek, we get a 'James T kirk'. If we oen the wikipedia page, we see his brother is George Smauel Kirk. Hence inpuuting Samuel as the answer, we are able to rest password.
 
