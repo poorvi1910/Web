@@ -42,7 +42,7 @@ Privacy Policy Inspection -
 
 Product Tampering -
  
-Reset Jim's Password -
+Reset Jim's Password - If we look at jim's reviews, we see he mentions a 'replicator','tricorder' and 'Starfleet'. All of these are a part of star trek. if we search jim star trek, we get a 'James T kirk'. If we oen the wikipedia page, we see his brother is George Smauel Kirk. Hence inpuuting Samuel as the answer, we are able to rest password.
 
 Upload Size - Upload a file larger than 100 kB. - If we upload a pdf doc that is smaller than 100 kb and analyze the request in burp, we see the entire pdf contents. Hence if we create a larger file, copy paste its contents(after opening in notepad) intead of the orginal document ater sending request to repeater and sending this we can solve the challenge
 
