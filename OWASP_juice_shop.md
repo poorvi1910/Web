@@ -20,9 +20,9 @@ Database schema -
 
 Deluxe Fraud - 
 
-Forged feedback - 
+Forged feedback - We can intercept the request in burp, change the user id to some other number and forward the request and the challenge is solved.
 
-Forged review - 
+Forged review - We can intercept the request in burp, change the email id to someone else's like jim if we are in the admin account and forward the request and the challenge is solved.
 
 GDPR data erasure - 
 
