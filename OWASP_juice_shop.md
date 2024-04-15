@@ -38,7 +38,7 @@ Mint the Honey Pot -
 
 Payback Time -
 
-Privacy Policy Inspection -
+Privacy Policy Inspection - When we go to the privacy policy page, we see that random pieces of text get a coloured highlight behind them. Going to dev tools, we get to know that is due to an atrribute called 'hot'. Searchhing for all occurences of it and noting down the text which is operated on by the attribute, combining it all into one url and searching it, the challenege gets solved
 
 Product Tampering - If we add a product to basket and view the request, we see produuctid, basketid and quantity. If we just add another basket id below ours, and change the product id to another new one and send the request, we are able to add the item to that basket as well
  
