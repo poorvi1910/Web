@@ -14,8 +14,6 @@ Bjoern's favourite pet- If we google Bjoern Kimminich's name we get a youtube vi
 
 Captcha bypass - When we enter feedback, fill in the captcha and hit enter we can see in the post request that our captcha, and comment are there. I sent it to repeater and sent the request again without a new capttcha and the response was successful. So i sent it to intruder while keeping the payload as null and count as 11 and started the attack which solved the challenge
 
-CSRF - 
-
 Database schema - 
 
 Deluxe Fraud - 
