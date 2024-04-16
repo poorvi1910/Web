@@ -35,4 +35,11 @@ If we go to burp and put in the list as payload for username in intruder and sta
 
 I tried the same list for password field but didn't get it. So I tired rockyu but burp wasnt able to even load the list for me. So went to a writeup and it was mentioned that the process tokk half an hour and that the password is ER28–0652. NOTE that password attacks on wordpress site can also be done using wpscan which i didn't know.
 
+### Reverse shell:<br>
+NOTE: Port 53 is a good port to start areverse shell on because it is rarely blocked by a firewall
+
+Code for php reverse shell ca be found on this site:
+https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php
+
+If we go to Appearences-->Edito-->404 template and paste this code there, chage the ip address and port to that our machine's and run the following command on terminal:
 
