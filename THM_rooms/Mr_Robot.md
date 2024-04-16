@@ -32,6 +32,7 @@ I next come to a /wp-login/ endpoint. Going to it:
 I think i know where the wordlist fsocity will be used
 If we go to burp and put in the list as payload for username in intruder and start attack, we see that for the name 'Elliot', the response is very unique as that from others
 ![image](https://github.com/poorvi1910/Web/assets/146640913/388619b5-bdaf-46a5-86d4-220c839d9515)
+
 I tried the same list for password field but didn't get it. So I tired rockyu but burp wasnt able to even load the list for me. So went to a writeup and it was mentioned that the process tokk half an hour and that the password is ER28–0652. NOTE that password attacks on wordpress site can also be done using wpscan which i didn't know.
 
 
