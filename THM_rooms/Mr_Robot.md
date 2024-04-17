@@ -88,3 +88,13 @@ Using the second option: <br>
 ![image](https://github.com/poorvi1910/Web/assets/146640913/e1975405-1f0d-4747-b388-6eb8c2534395)
 
 ```KEY 3: 04787ddef27c3dee1ee161b21670b4e4```
+
+## Additional shell commands :<br>
+
+![image](https://github.com/poorvi1910/Web/assets/146640913/d2330191-5d81-431a-9784-c01d33293670)
+
+![image](https://github.com/poorvi1910/Web/assets/146640913/ede36303-2a3c-4f0f-a670-eca3b4976d72)
+
+![image](https://github.com/poorvi1910/Web/assets/146640913/26df536c-a945-4ef1-bf93-3479f9b6bce5)
+
+
