@@ -63,9 +63,15 @@ Cracking the md5 hash: https://crackstation.net/ <br>
 
 We need to the user to be robot to be able to read the key-2-of3.txt file
 
-The su command changes user credentials to those of the root user or to the user specified by the Name parameter, and initiates a new session.
+The su command changes user credentials to those of the root user or to the user specified by the Name parameter, and initiates a new session. It cannot be run from a shell that is not interactive
 
 ![image](https://github.com/poorvi1910/Web/assets/146640913/086b79c5-e557-4fd4-8101-551e8d498647)
 
 ```KEY 2: 822c73956184f694993bede3eb39f959```
 
+
+![image](https://github.com/poorvi1910/Web/assets/146640913/5988476e-6583-4cd0-a72c-ae9f8cebf9c6)
+
+![image](https://github.com/poorvi1910/Web/assets/146640913/e1975405-1f0d-4747-b388-6eb8c2534395)
+
+```KEY 3: 04787ddef27c3dee1ee161b21670b4e4```
