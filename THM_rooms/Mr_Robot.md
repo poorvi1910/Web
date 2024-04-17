@@ -41,5 +41,31 @@ NOTE: Port 53 is a good port to start areverse shell on because it is rarely blo
 Code for php reverse shell ca be found on this site:
 https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php
 
-If we go to Appearences-->Edito-->404 template and paste this code there, chage the ip address and port to that our machine's and run the following command on terminal:
+If we go to Appearences-->Editor-->404 template and paste this code there, chage the ip address to that of vpn and port to say 1234 and run the following command on terminal:
+
+```nc -nvlp 1234```
+
+```python -c "import pty; pty.spawn('/bin/bash')"```
+The command  is a Python one-liner that invokes the pty module to spawn a pseudo-terminal running /bin/bash. This effectively creates an interactive shell session within the current terminal.
+
+It's commonly used when you have a limited shell (such as when you're executing commands through a web application or SSH session) and you want to upgrade it to a fully interactive shell. This can be particularly useful for tasks like exploring the file system, running more complex commands, or accessing restricted resources.
+
+After executing this command, you'll typically find yourself in a more interactive shell environment where you can execute commands as if you were directly logged into the system.
+
+
+![image](https://github.com/poorvi1910/Web/assets/146640913/df0e08d5-2c09-48f4-9c53-26fe4e49f980)
+
+
+Cracking the md5 hash: https://crackstation.net/ <br>
+![image](https://github.com/poorvi1910/Web/assets/146640913/ba4a8825-5ab7-48a6-8b81-a4d992380cbb)
+
+![image](https://github.com/poorvi1910/Web/assets/146640913/e32f55e3-54b5-450b-ab39-9cea64f06cdc)
+
+We need to the user to be robot to be able to read the key-2-of3.txt file
+
+The su command changes user credentials to those of the root user or to the user specified by the Name parameter, and initiates a new session.
+
+![image](https://github.com/poorvi1910/Web/assets/146640913/086b79c5-e557-4fd4-8101-551e8d498647)
+
+```KEY 2: 822c73956184f694993bede3eb39f959```
 
