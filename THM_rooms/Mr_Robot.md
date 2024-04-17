@@ -69,8 +69,21 @@ The su command changes user credentials to those of the root user or to the user
 
 ```KEY 2: 822c73956184f694993bede3eb39f959```
 
+### Privelege escalation :<br>
+
+User robot doesn’t have permission to run sudo command
+
+Commonly noted as SUID, the special permission for the user access level has a single function: A file with SUID always executes as the user who owns the file, regardless of the user passing the command. Hence running this command which searches for all files having SUID bit set
+
+```find / -perm -u=s -type f 2>/dev/null```
 
 ![image](https://github.com/poorvi1910/Web/assets/146640913/5988476e-6583-4cd0-a72c-ae9f8cebf9c6)
+
+Apart from nmap, rest all are standard, hence we know that we have to make use of that. Now if we visit GTFO bins website(GTFOBins is a curated list of Unix binaries that can be used to bypass local security restrictions in misconfigured systems.) https://gtfobins.github.io/ and search “nmap” which shows us possible command to privilege escalate.
+
+![image](https://github.com/poorvi1910/Web/assets/146640913/b79181c4-5594-4ac5-9325-8dba0b17aace)
+
+Using the second option: <br>
 
 ![image](https://github.com/poorvi1910/Web/assets/146640913/e1975405-1f0d-4747-b388-6eb8c2534395)
 
