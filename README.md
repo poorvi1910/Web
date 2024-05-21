@@ -6,4 +6,5 @@ Things learnt:
 * perform xss
 * using group_concat in sql
 * php rev shell
+* perform ssti
 * make a crud app using jinja2 
