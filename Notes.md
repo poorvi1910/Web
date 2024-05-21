@@ -35,7 +35,7 @@ Output
 (<class 'A'>, <type 'object'>)
 ```
 
-4)  __init: method to initiate object
+4)  __init__: method to initiate object
 ```
 class MyClass:
     def __init__(self, value):
