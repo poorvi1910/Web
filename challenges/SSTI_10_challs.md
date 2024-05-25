@@ -19,6 +19,5 @@ translates to ```config.class.init.globals['os'].popen('od -b -An fla*').read()`
   - od: This is the "octal dump" command, which is used to display file contents in different formats (octal, hexadecimal, decimal, ASCII, etc.).
   - b: This option tells od to display the output in octal bytes. Each byte in the file(s) will be displayed as a three-digit octal number.
   - An: This option tells od to suppress the default output of file offsets. Normally, od prefixes each line of output with the byte offset of that line within the file. -An removes these offsets from the output.
-  - fla*: This is a shell glob pattern. It matches any files in the current directory whose names start with "fla". For example, it could match files like "flag.txt", "flag1.txt", etc.
-<br>
+  - fla*: This is a shell glob pattern. It matches any files in the current directory whose names start with "fla". For example, it could match files like "flag.txt", "flag1.txt", etc.<br>
 The ouput gives a string of numbers which when converted from octal to ascii gives the flag.
