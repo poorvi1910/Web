@@ -166,7 +166,7 @@ We find the flag!
 flag{7b5b91c60796488148ddf3b227735979}
 ```
 
-- ## Mr O
+- ## Patriot CTF (Mr O)
 Payload was pssed into the heder which printed a response only if the desired output is found
 ```
 from os import popen
