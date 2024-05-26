@@ -1,11 +1,4 @@
 Q: Give unique ssti payloads for the given cases while following these conditions:
-payloads must be as unique as possible ie if one starts with class.base.subclasses none others should start with it
-OR you can use some other variant of the same payload like attr getattr instead of dot notation but again with these there should be at max two payloads looking similar
-
-include the outputs of each part of payload eg for class.base.subclasses do class, then class.base and so on
-by output I DONT MEAN paste the o/p, well do paste after slicing [:100] but you have to explain what the o/p actually is again for each step and also mention what more you could do with it other than what the payload you probably ripped off of somewhere is doing - for this you have to spend at least 30 minutes on the first 2 or 3 payloads you start researching
-
-screenshots once in 5 paras
 
 ```
 from flask import Flask, request, render_template_string
