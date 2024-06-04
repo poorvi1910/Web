@@ -45,8 +45,14 @@ ntadmin1234 found password
 ```
 We can login now with website_admin_account:ntadmin1234 and get our flag
 
-###
+### The Davinci code
+Since the challenge mentions dav, if we look up , we find methods like propfind to give us files and directories <br>
+Using propfind on the site, gives us a /the_secret_dav_inci_code endpoint<br>
+using it again we get /flag.txt endpoint but we cant use it directly<br>
+We need to move the file to /static using move method and then we get the flag<br>
 
-###
+### Thomas deverson
+didnt understand completely yet
 
-###
+### Helpful desk
+didnt understand completely yet
