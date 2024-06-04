@@ -121,8 +121,10 @@ with open('data.pkl', 'rb') as file:
 ```
 
 * Java
+```
 To make a Java object serializable we implement the java.io.Serializable interface. The ObjectOutputStream class contains writeObject() method for serializing an Object. <br>
-The ObjectInputStream class contains readObject() method for deserializing an object. 
+The ObjectInputStream class contains readObject() method for deserializing an object.
+```
 ```
 // Java code for serialization and deserialization 
 // of a Java object
