@@ -26,8 +26,20 @@ file_obj.read((char *) & class_obj, sizeof(class_obj));
 ```
 
 * Python
+```
+import pickle
 
+obj = [1,2,3]
 
+# pickling
+with open('data.pkl', 'wb') as file:
+    pickle.dump(obj, file)
+
+# unpickling
+with open('data.pkl', 'rb') as file:
+    new_obj = pickle.load(file)
+
+```
 
 * Java
 
