@@ -73,6 +73,3 @@ We get the flag
         </div>
       </div>
 ```
-
-### Helpful desk
-didnt understand completely yet
