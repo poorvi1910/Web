@@ -35,9 +35,16 @@ file_obj.read((char *) & class_obj, sizeof(class_obj));
 * Pickling
 
   * Python pickle module is used for serializing and de-serializing a Python object structure.
-  * Any object in Python can be pickled so that it can be saved on disk. What Pickle does is it “serializes” the object first before writing it to a file.
-  * Pickling is a way to convert a Python object (list, dictionary, etc.) into a character stream.
-  * The idea is that this character stream contains all the information necessary to reconstruct the object in another Python script.
-  * It provides a facility to convert any Python object to a byte stream.
-  * This Byte stream contains all essential information about the object so that it can be reconstructed, or “unpickled” and get back into its original form in any Python.
-  
+    Any object in Python can be pickled so that it can be saved on disk. What Pickle does is it “serializes” the object first before writing it to a file.
+    Pickling is a way to convert a Python object (list, dictionary, etc.) into a character stream.
+    The idea is that this character stream contains all the information necessary to reconstruct the object in another Python script.
+    It provides a facility to convert any Python object to a byte stream.
+    This Byte stream contains all essential information about the object so that it can be reconstructed, or “unpickled” and get back into its original form in any Python.
+  * To successfully unpickle the object, the pickled byte stream contains instructions to the unpickler to reconstruct the original object structure along with instruction operands, which help in     populating the object structure
+  * The structure of a pickle file includes:
+     * Header: Indicates the pickle protocol version.
+     * Opcodes and Arguments: Define the serialized object structure.
+     * Stop Opcode: Marks the end of the pickle data.
+      
+  * Escape characters:
+    * \xhh	Gives the hexadecimal representation
