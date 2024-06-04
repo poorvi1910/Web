@@ -16,16 +16,95 @@ Encoding is at a lower level, like how your messaging/web service type/serializa
 
 * C++
 ```
-To write object's data members in a file :
-// Here file_obj is an object of ofstream
-file_obj.write((char *) & class_obj, sizeof(class_obj));
+First, create a class for the object you want to serialize and deserialize and it should have data members that hold the object’s state.
+Now, implement the method in the class to serialize the object and write its data to a file named data.bin.
+In this method, we will be using the ofstream::write() method to write the data in the binary form.
+Implement the static method to deserialize the object from the file and reconstruct it using the ifstream::read() method.
+In the main method, serialize the data again deserialize it, and then print it.
+```
+```
+// C++ Program to illustrate how we can serialize and
+// deserialize an object
+#include <fstream>
+#include <iostream>
+#include <string>
+using namespace std;
 
-To read file's data members into an object :
-// Here file_obj is an object of ifstream
-file_obj.read((char *) & class_obj, sizeof(class_obj));
+class Serializable {
+private:
+    string name;
+    int age;
+
+public:
+    Serializable(){};
+    // Constructor to initialize the data members
+    Serializable(const string& name, int age)
+        : name(name)
+        , age(age)
+    {
+    }
+
+    // Getter methods for the class
+    string getName() const { return name; }
+    int getAge() const { return age; }
+
+    //  Function for Serialization
+    void serialize(const string& filename)
+    {
+        ofstream file(filename, ios::binary);
+        if (!file.is_open()) {
+            cerr
+                << "Error: Failed to open file for writing."
+                << endl;
+            return;
+        }
+        file.write(reinterpret_cast<const char*>(this),
+                   sizeof(*this));
+        file.close();
+        cout << "Object serialized successfully." << endl;
+    }
+
+    //  Function for Deserialization
+    static Serializable deserialize(const string& filename)
+    {
+        Serializable obj("", 0);
+        ifstream file(filename, ios::binary);
+        if (!file.is_open()) {
+            cerr
+                << "Error: Failed to open file for reading."
+                << endl;
+            return obj;
+        }
+        file.read(reinterpret_cast<char*>(&obj),
+                  sizeof(obj));
+        file.close();
+        cout << "Object deserialized successfully." << endl;
+        return obj;
+    }
+};
+
+int main()
+{
+    // Create and serialize an object
+    Serializable original("Alice", 25);
+    original.serialize("data.bin");
+
+    // Deserialize the object
+    Serializable restored
+        = Serializable::deserialize("data.bin");
+
+    // Test the  deserialized object
+    cout << "Deserialized Object:\n";
+    cout << "Name: " << restored.getName() << endl;
+    cout << "Age: " << restored.getAge() << endl;
+
+    return 0;
+}
+
 ```
 
 * Python
+Uses pickle module
 ```
 import pickle
 
@@ -42,7 +121,91 @@ with open('data.pkl', 'rb') as file:
 ```
 
 * Java
+To make a Java object serializable we implement the java.io.Serializable interface. The ObjectOutputStream class contains writeObject() method for serializing an Object. <br>
+The ObjectInputStream class contains readObject() method for deserializing an object. 
+```
+// Java code for serialization and deserialization 
+// of a Java object
+import java.io.*;
 
+class Demo implements java.io.Serializable
+{
+	public int a;
+	public String b;
+
+	// Default constructor
+	public Demo(int a, String b)
+	{
+		this.a = a;
+		this.b = b;
+	}
+
+}
+
+class Test
+{
+	public static void main(String[] args)
+	{ 
+		Demo object = new Demo(1, "geeksforgeeks");
+		String filename = "file.ser";
+		
+		// Serialization 
+		try
+		{ 
+			//Saving of object in a file
+			FileOutputStream file = new FileOutputStream(filename);
+			ObjectOutputStream out = new ObjectOutputStream(file);
+			
+			// Method for serialization of object
+			out.writeObject(object);
+			
+			out.close();
+			file.close();
+			
+			System.out.println("Object has been serialized");
+
+		}
+		
+		catch(IOException ex)
+		{
+			System.out.println("IOException is caught");
+		}
+
+
+		Demo object1 = null;
+
+		// Deserialization
+		try
+		{ 
+			// Reading the object from a file
+			FileInputStream file = new FileInputStream(filename);
+			ObjectInputStream in = new ObjectInputStream(file);
+			
+			// Method for deserialization of object
+			object1 = (Demo)in.readObject();
+			
+			in.close();
+			file.close();
+			
+			System.out.println("Object has been deserialized ");
+			System.out.println("a = " + object1.a);
+			System.out.println("b = " + object1.b);
+		}
+		
+		catch(IOException ex)
+		{
+			System.out.println("IOException is caught");
+		}
+		
+		catch(ClassNotFoundException ex)
+		{
+			System.out.println("ClassNotFoundException is caught");
+		}
+
+	}
+}
+
+```
 
 * Pickling
 
