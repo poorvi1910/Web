@@ -7,4 +7,5 @@ Things learnt:
 * using group_concat in sql
 * php rev shell
 * perform ssti
-* make a crud app using jinja2 
+* make a crud app using jinja2
+* os command injection
