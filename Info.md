@@ -40,11 +40,59 @@ file_obj.read((char *) & class_obj, sizeof(class_obj));
     The idea is that this character stream contains all the information necessary to reconstruct the object in another Python script.
     It provides a facility to convert any Python object to a byte stream.
     This Byte stream contains all essential information about the object so that it can be reconstructed, or “unpickled” and get back into its original form in any Python.
+    
   * To successfully unpickle the object, the pickled byte stream contains instructions to the unpickler to reconstruct the original object structure along with instruction operands, which help in     populating the object structure
-  * The structure of a pickle file includes:
-     * Header: Indicates the pickle protocol version.
-     * Opcodes and Arguments: Define the serialized object structure.
-     * Stop Opcode: Marks the end of the pickle data.
       
   * Escape characters:
     * \xhh	Gives the hexadecimal representation
+ 
+ * The structure of a pickle file includes:
+     * Header: Indicates the pickle protocol version.
+     * Opcodes and Arguments: Define the serialized object structure.
+     * Stop Opcode: Marks the end of the pickle data.
+  ![image](https://github.com/poorvi1910/Web/assets/146640913/4e00b717-8dfc-4953-904b-90f94c41b153)
+
+  *  ```
+     0x80 to 0x00 -> non-printable
+     0x5D -> ]
+     0x94 -> non-printable
+     0x28 -> (
+     0x4B -> K
+     0x01 -> non-printable
+     0x4B -> K
+     0x02 -> non-printable
+     0x7D -> }
+     0x94 -> non-printable
+     0x8C -> non-printable
+     0x03 -> non-printable
+     0x63 -> c
+     0x61 -> a
+     0x74 -> t
+     0x94 -> non-printable
+     0x8C -> non-printable
+     0x05 -> non-printable
+     0x6D -> m
+     0x6F -> o
+     0x75 -> u
+     0x73 -> s
+     0x65 -> e
+     0x94 -> non-printable
+     0x73 -> s
+     0x65 -> e
+     0x2E -> .
+     ```
+     ```
+     Header (0x80 0x04): The pickle protocol version is 4.
+     Frame (0x95...): Indicates a frame with a specified size.
+     Empty List (0x5D): An empty list is pushed onto the stack.
+     Memoize (0x94): The empty list is memoized for later reference.
+     Mark (0x28): Marks the start of a tuple.
+     Integers (0x4B 0x01, 0x4B 0x02): Integers 1 and 2 are pushed onto the stack.
+     Empty Dict (0x7D): An empty dictionary is pushed onto the stack.
+     Memoize (0x94): The empty dictionary is memoized.
+     Short Unicode Strings (0x8C...): "cat" and "mouse" strings are pushed onto the stack and memoized.
+     Set Item (0x73): Sets "cat" as a key and "mouse" as a value in the dictionary.
+     Appends (0x65): Appends items (possibly a list or dictionary) to another structure.
+     Stop (0x2E): Ends the pickling process.
+     ```
+     
