@@ -95,4 +95,7 @@ file_obj.read((char *) & class_obj, sizeof(class_obj));
      Appends (0x65): Appends items (possibly a list or dictionary) to another structure.
      Stop (0x2E): Ends the pickling process.
      ```
+  * Net result of the operation: 
+   ![image](https://github.com/poorvi1910/Web/assets/146640913/420daa06-d7e0-4253-9385-8d3f8405c240)
+
      
