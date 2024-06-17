@@ -29,7 +29,9 @@
 ## What are math tags
 The <math> MathML element is the top-level MathML element, used to write a single mathematical formula
 
-## what are glyphs
+## What are glyphs
+A glyph is a term used in typography for the visual representation of one or more characters.<br>
+The fonts used by a website contain different sets of glyphs, which represent the characters of the font.<br>
 
 500 words minimum on below stuff
 WHat is dom
