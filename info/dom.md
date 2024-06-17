@@ -88,11 +88,7 @@ There are two primary types of DOM parsers:
 https://www.linkedin.com/pulse/how-browser-works-amit-pal/
   
 
-(2)Modern JavaScript parsers use heuristics to determine whether a certain piece of code is going to be executed immediately or its execution will be postponed for some time in the future. Based on these heuristics the parser will do either eager or lazy parsing. Eager parsing runs through the functions that need to be compiled immediately. It does three main things: builds AST, builds scope hierarchy, and finds all syntax errors
+(2) Modern JavaScript parsers use heuristics to determine whether a certain piece of code is going to be executed immediately or its execution will be postponed for some time in the future. Based on these heuristics the parser will do either eager or lazy parsing. Eager parsing runs through the functions that need to be compiled immediately. It does three main things: builds AST, builds scope hierarchy, and finds all syntax errors
 
 
-## Choose a dom parser, preferably one using by browsers/dompurify and illustrate how (i) a good html (ii) a bad html i.e. one missing quotes, opening, closing tags gets rendered
 
-(1)
-
-(2)
