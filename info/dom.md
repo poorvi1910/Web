@@ -32,14 +32,29 @@ The <math> MathML element is the top-level MathML element, used to write a singl
 ## What are glyphs
 A glyph is a term used in typography for the visual representation of one or more characters.<br>
 The fonts used by a website contain different sets of glyphs, which represent the characters of the font.<br>
+A glyph is a single representation of a character. Every font has a Unicode character map that links (abstract) character IDs with how to display that character, using the default glyphs<br>
 
-500 words minimum on below stuff
-WHat is dom
-what's a dom parser
-if I give you html
-how does any parser convert that to an actual dom
-what part of the dom parser makes the decision making of handling errors i.e. `<img=a>` automatically becoming `<img="a">`
-choose a dom parser, preferably one using by browsers/dompurify and illustrate how 
-1 a good html
-2 a bad html i.e. one missing quotes, opening, closing tags
-gets rendered
+
+## WHat is dom
+When a web page is loaded, the browser creates a Document Object Model of the page.
+The DOM is a W3C (World Wide Web Consortium) standard.
+The DOM defines a standard for accessing documents:
+"The W3C Document Object Model (DOM) is a platform and language-neutral interface that allows programs and scripts to dynamically access and update the content, structure, and style of a document."
+
+The W3C DOM standard is separated into 3 different parts:
+- Core DOM - standard model for all document types
+- XML DOM - standard model for XML documents
+- HTML DOM - standard model for HTML documents
+
+The HTML DOM is a standard object model and programming interface for HTML. It defines:
+- The HTML elements as objects
+- The properties of all HTML elements
+- The methods to access all HTML elements
+- The events for all HTML elements
+- In other words: The HTML DOM is a standard for how to get, change, add, or delete HTML elements.
+
+## What's a dom parser
+
+## If I give you html (i) How does any parser convert that to an actual dom (ii) What part of the dom parser makes the decision making of handling errors i.e. `<img=a>` automatically becoming `<img="a">`
+
+## Choose a dom parser, preferably one using by browsers/dompurify and illustrate how (i) a good html (ii) a bad html i.e. one missing quotes, opening, closing tags gets rendered
