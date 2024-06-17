@@ -1,4 +1,4 @@
-## What is dompurity
+## What is dompurify
   - DOMPurify sanitizes HTML and prevents XSS attacks. You can feed DOMPurify with string full of dirty HTML and it will return a string (unless configured otherwise) with clean HTML. DOMPurify will strip out everything that contains dangerous HTML and thereby prevent XSS attacks and other nastiness.
   - ### How to use it <br>
   Just include DOMPurify on your website<br>
@@ -27,6 +27,8 @@
 
 
 ## What are math tags
+The <math> MathML element is the top-level MathML element, used to write a single mathematical formula
+
 ## what are glyphs
 
 500 words minimum on below stuff
