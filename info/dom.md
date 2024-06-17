@@ -59,6 +59,18 @@ The DOMParser interface provides the ability to parse XML or HTML source code fr
 DOM Parser is a very useful tool for developers who want to manipulate HTML/XML documents. It allows them to easily extract information from the DOM tree.<br>
 A DOM (Document Object Model) parser is a tool used in computer programming to read and manipulate an XML (Extensible Markup Language) or HTML (Hypertext Markup Language) document by treating it as a tree structure where each node represents a part of the document. This approach allows developers to access, modify, delete, or add elements and attributes in the document programmatically.
 
+There are two primary types of DOM parsers:
+- XML DOM Parsers: Used for parsing XML documents. Examples include:
+  - javax.xml.parsers.DocumentBuilder in Java
+  - xml.dom.minidom in Python
+  - System.Xml.XmlDocument in C#
+
+- HTML DOM Parsers: Used for parsing HTML documents. Examples include:
+  - The DOMParser interface in JavaScript
+  - BeautifulSoup in Python (although primarily an HTML parser, it also supports XML)
+  - NSXMLDocument in Objective-C for macOS and iOS development
+![image](https://github.com/poorvi1910/Web/assets/146640913/5e9edfbd-ee54-47b5-b284-7a7e4fd18766)
+
 
 ## If I give you html (i) How does any parser convert that to an actual dom (ii) What part of the dom parser makes the decision making of handling errors i.e. `<img=a>` automatically becoming `<img="a">`
 
