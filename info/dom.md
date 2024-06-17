@@ -40,6 +40,7 @@ When a web page is loaded, the browser creates a Document Object Model of the pa
 The DOM is a W3C (World Wide Web Consortium) standard.
 The DOM defines a standard for accessing documents:
 "The W3C Document Object Model (DOM) is a platform and language-neutral interface that allows programs and scripts to dynamically access and update the content, structure, and style of a document."
+The DOM defines the logical structure of documents and the way a document is accessed and manipulated. Essentially, it transforms the document into a tree of objects, each representing a part of the document, such as elements, attributes, text nodes, and comments. This hierarchical tree structure provides a means to traverse and modify the content of the document easily.
 
 The W3C DOM standard is separated into 3 different parts:
 - Core DOM - standard model for all document types
@@ -54,6 +55,10 @@ The HTML DOM is a standard object model and programming interface for HTML. It d
 - In other words: The HTML DOM is a standard for how to get, change, add, or delete HTML elements.
 
 ## What's a dom parser
+The DOMParser interface provides the ability to parse XML or HTML source code from a string into a DOM Document . You can perform the opposite operation—converting a DOM tree into XML or HTML source—using the XMLSerializer interface. The DOM is a tree representation of the document. In order to create a page, you need to parse the HTML code into its corresponding DOM using DOM Parser.<br>
+DOM Parser is a very useful tool for developers who want to manipulate HTML/XML documents. It allows them to easily extract information from the DOM tree.<br>
+A DOM (Document Object Model) parser is a tool used in computer programming to read and manipulate an XML (Extensible Markup Language) or HTML (Hypertext Markup Language) document by treating it as a tree structure where each node represents a part of the document. This approach allows developers to access, modify, delete, or add elements and attributes in the document programmatically.
+
 
 ## If I give you html (i) How does any parser convert that to an actual dom (ii) What part of the dom parser makes the decision making of handling errors i.e. `<img=a>` automatically becoming `<img="a">`
 
