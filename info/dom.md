@@ -79,13 +79,16 @@ There are two primary types of DOM parsers:
 - Lexical Analysis (Tokenization): The parser reads the HTML string character by character and breaks it down into tokens, such as tags, attributes, text nodes, and comments. Each token represents a distinct element of the document.
 
 - Syntactic Analysis (Parsing): The parser takes the stream of tokens and builds a tree structure according to the rules of HTML grammar. This involves:
-  - Element Nodes: Created for tags like <div>, <p>, etc.
+  - Element Nodes: Created for tags like ```<div>```, ```<p>```, etc.
   - Text Nodes: Created for the text content between the tags.
   - Attribute Nodes: Created for attributes within tags, such as class="example".
 
 - Tree Construction: The parser organizes the nodes into a tree structure where the root is the document object, and child nodes represent elements, attributes, and text in a hierarchical manner.
 
-(2)
+https://www.linkedin.com/pulse/how-browser-works-amit-pal/
+  
+
+(2)Modern JavaScript parsers use heuristics to determine whether a certain piece of code is going to be executed immediately or its execution will be postponed for some time in the future. Based on these heuristics the parser will do either eager or lazy parsing. Eager parsing runs through the functions that need to be compiled immediately. It does three main things: builds AST, builds scope hierarchy, and finds all syntax errors
 
 
 ## Choose a dom parser, preferably one using by browsers/dompurify and illustrate how (i) a good html (ii) a bad html i.e. one missing quotes, opening, closing tags gets rendered
