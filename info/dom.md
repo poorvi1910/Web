@@ -20,10 +20,12 @@
   The resulting HTML can be written into a DOM element using innerHTML or the DOM using ```document.write()```. That is fully up to you. Note that by    default, we permit HTML, SVG and MathML. If you only need HTML, which might be a very common use-case, you can easily set that up as well:
  ``` const clean = DOMPurify.sanitize(dirty, { USE_PROFILES: { html: true } })```
 
-  - How not to use it
+  - How not to use it <br>
+    If you first sanitize HTML and then modify it afterwards, you might easily void the effects of sanitization. If you feed the sanitized markup to another library after sanitization, please be certain that the library doesn't mess around with the HTML on its own.<br>
+    Combining DOMPurify with happy-dom is currently not recommended and will likely lead to XSS<br>
+    Use the latest version of jsdom because older versions of jsdom are known to be buggy in ways that result in XSS even if DOMPurify does everything 100% correctly
 
-    
-  - Configuration, what to allow, what not
+
 ## What are math tags
 ## what are glyphs
 
