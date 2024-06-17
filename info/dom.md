@@ -91,3 +91,23 @@ https://www.linkedin.com/pulse/how-browser-works-amit-pal/
 (2) Modern JavaScript parsers use heuristics to determine whether a certain piece of code is going to be executed immediately or its execution will be postponed for some time in the future. Based on these heuristics the parser will do either eager or lazy parsing. Eager parsing runs through the functions that need to be compiled immediately. It does three main things: builds AST, builds scope hierarchy, and finds all syntax errors
 
 
+## Choose a dom parser, preferably one using by browsers/dompurify and illustrate how (i) a good html (ii) a bad html i.e. one missing quotes, opening, closing tags gets rendered
+
+(1)
+Javascript
+```
+  const one = new DOMParser(); 
+  const greet = "<h1>Hello</h1>"; 
+  const final = one.parseFromString(greet, "text/html"); 
+  console.log(final.body.firstChild.textContent);
+```
+![image](https://github.com/poorvi1910/Web/assets/146640913/97f9c9cd-53b1-4211-a58a-d17807848411)
+
+(2)
+```
+  const one = new DOMParser(); 
+  const hi = "<h1>Hi"; 
+  const final = one.parseFromString(hi, "text/html"); 
+```
+![image](https://github.com/poorvi1910/Web/assets/146640913/b2fc7463-bfbc-4ace-91f4-bacb7471819c)
+
