@@ -69,9 +69,27 @@ There are two primary types of DOM parsers:
   - The DOMParser interface in JavaScript
   - BeautifulSoup in Python (although primarily an HTML parser, it also supports XML)
   - NSXMLDocument in Objective-C for macOS and iOS development
+
 ![image](https://github.com/poorvi1910/Web/assets/146640913/5e9edfbd-ee54-47b5-b284-7a7e4fd18766)
 
 
 ## If I give you html (i) How does any parser convert that to an actual dom (ii) What part of the dom parser makes the decision making of handling errors i.e. `<img=a>` automatically becoming `<img="a">`
 
+(1)
+- Lexical Analysis (Tokenization): The parser reads the HTML string character by character and breaks it down into tokens, such as tags, attributes, text nodes, and comments. Each token represents a distinct element of the document.
+
+- Syntactic Analysis (Parsing): The parser takes the stream of tokens and builds a tree structure according to the rules of HTML grammar. This involves:
+  - Element Nodes: Created for tags like <div>, <p>, etc.
+  - Text Nodes: Created for the text content between the tags.
+  - Attribute Nodes: Created for attributes within tags, such as class="example".
+
+- Tree Construction: The parser organizes the nodes into a tree structure where the root is the document object, and child nodes represent elements, attributes, and text in a hierarchical manner.
+
+(2)
+
+
 ## Choose a dom parser, preferably one using by browsers/dompurify and illustrate how (i) a good html (ii) a bad html i.e. one missing quotes, opening, closing tags gets rendered
+
+(1)
+
+(2)
