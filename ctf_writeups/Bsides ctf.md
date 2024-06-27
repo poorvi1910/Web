@@ -1,3 +1,5 @@
+### Job Application
+
 Authors mentioned that the application uses flask with jinja2. So i figured it must use ssti<br>
 I put {{7*7}} into all the fields and only the comment field showed 49<br>
 They also mentioned flag was at /flag.txt<br>
