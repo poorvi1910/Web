@@ -25,6 +25,24 @@ If everything is implemented correctly, the server validates the moves and provi
 
 The solve script used is at https://github.com/hbsmmsbh/ctf-writeup/blob/main/Lexington%20Informatics%20Tournament%20CTF/2024/web/scrainbow_solution.py
 
+## CTFzone: Breathtaking roulette
+
+Came close to solvin this one. While we were tryng to manipulate the array data of player and opponent shots, we instead had to send the shot message to the server repeatedly instead. When the opponent's lives were all lost the flag would have been printed. One alternatve way to solve since websocket was used, mentioned
+by someone,  was to use devtool along with socket.emit function to send websocket messages in a cycle to the server using someting similar to this:
+```
+let messageNumber = 0;
+let interval = setInterval(() => {
+    if (socket.readyState === WebSocket.OPEN) {
+        let message = `Message number ${messageNumber}`;
+        socket.send(message);
+        console.log("Sent:", message);
+        messageNumber++;
+    } else {
+        console.log("WebSocket is not open. Stopping the message sending cycle.");
+        clearInterval(interval);
+    }
+}, 1000); // Sends a message every 1000 milliseconds (1 second)
+```
 
 ## CTFzone: Old but gold
 
