@@ -59,4 +59,11 @@ The paylaod given to bypass it is:
 ```
 
 Hence modifying to exfltrate our files:
-first
+The webroot directory is the part of the server's file system that is exposed to the web. Any file placed in this directory can be accessed directly through a URL, such as http://example.com/filename.txt. So we can output the result to the webroot directory, which is at /app/src/wwwroot/.
+
+bash command used: ```\"ls / > /app/src/wwwroot/output.txt\"```
+
+![image](https://github.com/user-attachments/assets/085727fd-e6c9-4be5-9230-d6e18b96d820)
+
+
+
