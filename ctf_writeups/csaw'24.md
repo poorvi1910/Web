@@ -10,7 +10,7 @@
                   '𓀠', '𓀡', '𓀢', '𓀣', '𓀤', '𓀥', '𓀦', '𓀧', '𓀨', '𓀩', '𓀪', '𓀫', '𓀬', '𓀭', '𓀮', '𓀯',
                   '𓀰', '𓀱', '𓀲', '𓀳', '𓀴', '𓀵', '𓀶', '𓀷', '𓀸', '𓀹', '𓀺', '𓀻']
 ```
-The curly brackets being allowed let to ssti vuln.
+The curly brackets being allowed leads to ssti vuln.
   -  To access the kings_lair template which contained our flag,the jwt payload needed the urrent date variable to be equal to kingsday and also the role field  had to be equal to 'royalty'
 ```
 if decoded.get("CURRENT_DATE") == KINGSDAY and decoded.get("ROLE") == "royalty":
