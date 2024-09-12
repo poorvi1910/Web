@@ -24,4 +24,15 @@ if decoded.get("CURRENT_DATE") == KINGSDAY and decoded.get("ROLE") == "royalty":
  
 - **Solve**
   - ```{{KINGSDAY}}``` in the ssti field. which basically means we are trying to print the kingsday variable, prints it out and we get the value of kingsday as ```03_07_1341_BC```
-  - 
+  - We see a line in the source code;
+    ```
+    algorithms = jwt.algorithms.get_default_algorithms()
+    ```
+    Which is basically getting all the default jwt algirthms and storing it as a dictionary. But why would this line be there if we have defined the algorithm as eddsa? That leads to the following CVE:
+    https://attackerkb.com/topics/tqSPoszKXW/cve-2022-29217/vuln-details
+    
+    The pyjwt version in docker was before cve was patched. Hence we have found the vulnerability!
+     
+    The algorithms=jwt.algorithms.get_default_algorithms() in jwt.decode() allows us to OVERRIDE the type to HS256 by putting it in the header.  We        exploit the fact that in EdDSA jwt.decode() the 2nd argument is the public key as it's the same case in HS256 decode. 
+
+    Using the public key provided as the secret ,changing current date and role fields we get our crafted jwt. Sending it to the url we obtain the flag. 
