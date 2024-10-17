@@ -137,8 +137,8 @@ ALTERNATE SOLUTION
 ![image](https://github.com/user-attachments/assets/a602ab0e-4322-4d83-899a-8a1c24073865)
 
 
-## Bluenote
-Couldnt find the actual chall but the writeups were something new i read
+## TODO : Bluenote
+Couldnt find the actual chall but the writeups were something new i read (still ned to go through this)
 ```
 intended solution for bluenote was connection pool abuse yeah
 if you block all the sockets, you can let individual blocks of requests go through if you unblock and reblock very quickly
