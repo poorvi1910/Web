@@ -1,10 +1,10 @@
 ## Sandevistan
 Giving is a Go app and goal is to exexute /redflag in the server
 
-You can overwrite any file using ErrorFactory through POST to /cyberware
-Overwrite /tmpl/user.html to do SSTI
-Run SerializedErrors to overwrite /bin/true in /proc/1/mem
-Run UserHealthcheck to get the flag
+- You can overwrite any file using ErrorFactory through POST to /cyberware
+- Overwrite /tmpl/user.html to do SSTI
+- Run SerializedErrors to overwrite /bin/true in /proc/1/mem
+- Run UserHealthcheck to get the flag
 ```
 import requests
 # URL = "http://sandevistan.chal.perfect.blue:29005/"
