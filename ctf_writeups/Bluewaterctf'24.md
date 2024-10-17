@@ -1,8 +1,114 @@
 ## Sandevistan
 Giving is a Go app and goal is to exexute /redflag in the server
 
-- You can overwrite any file using ErrorFactory through POST to /cyberware
-- Overwrite /tmpl/user.html to do SSTI
+### Concerned source code snippets
+```
+func (s *Server) cwHandlePost(w http.ResponseWriter, r *http.Request){
+    err := r.ParseForm()
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusBadRequest)
+        return
+    }
+    ue := checkForm(r)
+ 
+    // The rest is left out because it's not important
+}
+
+func checkForm(r *http.Request) *models.UserError {
+    var ue *models.UserError
+    ctx := r.Context()
+    username, exists := r.Form["username"]
+    if !exists {
+        ue = &models.UserError{
+            Value: "NOUSER",
+            Filename: "nouser",
+            Ctx: ctx,
+        }
+        return ue
+    }
+    ctx = context.WithValue(ctx, "username", username[len(username)-1])
+    cwName, exists := r.Form["name"]
+    if !exists {
+        ue = utils.ErrorFactory(ctx, "CyberWare name doesn't exist", username[len(username)-1])
+        return ue
+    }
+    ue = utils.AlphaNumCheck(ctx, cwName[0])
+    return ue
+}
+
+func AlphaNumCheck(ctx context.Context, t string) *models.UserError {
+    if !regexp.MustCompile(`^[a-zA-Z0-9]*$`).MatchString(t) {
+        v := fmt.Sprintf("ERROR! Invalid Value: %s\n", t)
+        username := ctx.Value("username")
+        regexErr := ErrorFactory(ctx, v, username.(string))
+        return regexErr
+    }
+    return nil
+}
+
+func ErrorFactory(ctx context.Context, v string, f string) *models.UserError {
+    filename := "errorlog/" + f
+    UErr := &models.UserError{
+        v,
+        f,
+        ctx,
+    }
+    file, _ := os.OpenFile(filename, os.O_RDWR|os.O_CREATE, 0644)
+    defer file.Close()
+
+    file.WriteString(v)
+    return UErr
+}
+
+func (s *Server) handleUserGet(w http.ResponseWriter, r *http.Request) {
+    u, err := s.GetUser(r.FormValue("username"))
+    if err != nil {
+        http.Error(w, "Username not found", http.StatusNotFound)
+        return
+    }
+
+    if u.Name == "NOUSER" {
+        http.Redirect(w, r, "/", http.StatusFound)
+    }
+    utils.RenderTemplate(w, "/tmpl/user", u)
+}
+
+func (u *User) SerializeErrors(data string, index int, offset int64) error {
+  fname := u.Errors[index]
+
+    if fname == nil {
+        return errors.New("Error not found")
+    }
+ 
+    f, err := os.OpenFile(fname.Filename, os.O_RDWR, 0)
+    if err != nil {
+        return errors.New("File not found")
+    }
+    defer f.Close()
+
+    _, ferr := f.WriteAt([]byte(data), offset)
+    if ferr != nil {
+        return errors.New("File error writing")
+    }
+
+    return nil
+}
+
+func (u *User) UserHealthcheck() ([]byte, error) {
+    cmd := exec.Command("/bin/true")  
+    output, err := cmd.CombinedOutput()
+    if err != nil {
+        return nil, errors.New("error in healthcheck")
+        panic(err)
+    }
+    return output, nil
+
+}
+```
+
+- The ErrorFactory function has a path traversal vulnerability. You can overwrite any file using ErrorFactory through POST to /cyberware
+- Overwrite /tmpl/user.html to do SSTI by sending a POST request with the parameter username=../tmpl/user.html&name=(payload) because it does not check if the user with the given username exists
+- The handleUserGet function evaluates the template tmpl/user.html with the user object.
 - Run SerializedErrors to overwrite /bin/true in /proc/1/mem
 - Run UserHealthcheck to get the flag
 ```
