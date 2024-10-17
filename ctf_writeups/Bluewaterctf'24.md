@@ -1,5 +1,5 @@
 ## Sandevistan
-Giving is a Go app and goal is to exexute /redflag in the server
+Giving is a Go app and goal is to execute /redflag in the server
 
 ### Concerned source code snippets
 ```
