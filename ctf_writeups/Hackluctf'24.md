@@ -103,5 +103,21 @@ When the height difference (corresponding to the height of a single letter) is s
 
 Paused animations can be useful in CSS and JavaScript when you want to stop or control the timing of animations on the page
 ```
-By changing the delay of a paused animation, we can select different values. We use it to select an exfiltration URL that matches the right letter:
+By changing the delay of a paused animation, we can select different values. We use it to select an exfiltration URL that matches the right letter
+
+- Unique Letter Heights
+To give every letter an individual height, we make use of descent-override (MDN):
+
+```
+@font-face {
+    font-family: has_A;
+    /* local font must be present on the target: */
+    src: local('DejaVu Sans Mono');
+    /* matches only the letter A: */
+    unicode-range: U+41;
+    /* set the height to 200% of its normal height: */
+    descent-override: 200%;
+}
+```
+By repeating this for all possible characters (in our case hex), we can give each letter an individual height. This will later allow us to map a height difference to a letter.
 
