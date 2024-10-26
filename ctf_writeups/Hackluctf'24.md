@@ -1,6 +1,9 @@
 ## Bench Press
 
 - Concept : Leaking Text Nodes with CSS
+  ```
+  a text node is the actual text content of an element, but CSS can’t select it independently. Instead, CSS styles can be applied to the parent element to affect its appearance
+  ```
 
 - The csp
  ```
@@ -19,6 +22,11 @@ no other stuff (read: no JS)
 sandbox allow-forms
 really, really no JS (missing allow-scripts)
 ```
+Techniques that leak the charset of a text node that would fit our conditions:
+
+- Using default fonts to cause size differences
+- Using default fonts to cause timing differences. Timing side-channels are generally slower and less reliable, so let’s go with the size differences
+
 ### Steps used
 - Make the text element have 1 char per line
 - Configure letters to have unique heights
