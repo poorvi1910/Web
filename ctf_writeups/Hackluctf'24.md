@@ -121,3 +121,28 @@ To give every letter an individual height, we make use of descent-override (MDN)
 ```
 By repeating this for all possible characters (in our case hex), we can give each letter an individual height. This will later allow us to map a height difference to a letter.
 
+## CSS injection
+1. The classic injection attack
+The attacker can simply inject the harmful code into the victim’s website either with a persistent injection or a reflected injection. In persistent injection type, the payload is stored in the server and as applicable, it is served to the visitor. While in the reflected injection type, the payload is inserted into a link and in turn, the page reflects the payload. An example is to replace tags such as <script> by <style> and “onerror” by <link rel=stylesheet href=…>
+
+2. Using HTML attributes to read data
+Attackers can embed codes for specific details or recursive operations to extract specific or a range of details from the website. In this method, the codes are executed and the malicious server is called with extracted data on matching specific conditions. For example, the below code recursively checks for usernames with specified characters and makes a call to the attacker’s server:
+
+![image](https://github.com/user-attachments/assets/e6790389-2e63-4c56-8070-a70459a66413)
+
+Through the above code, the attackers will keep extracting pieces of information until they can piece all of it to recreate a username to use in an upcoming attack.
+
+3. Reading text in text node
+CSS injection-based attacks are capable of reading attributes and extract details, but not from text nodes. In this method, attackers can access text nodes and read characters from within. Finally, the attacker will have bits and pieces of useful information that can be used to recreate actionable data. The below code is an example:
+
+![image](https://github.com/user-attachments/assets/1cf9a2f8-6356-46ed-986a-b0b5cde7837d)
+
+The above code will return characters A and B if they are present but not C. However, it is enough for attackers to plan or execute their next attackThe above are just some of the ways attackers can use CSS injection attacks on your website.
+
+## Prevention
+
+1. Sanitization based on context
+This simply means applying different sanitization rules and forms of encoding for respective situations. For example, for script elements or entities within HTML tags, we can use hex encoding. There would be other scenarios where you might require white lists or HTML encoding
+
+2. Using a strong Content Security Policy
+You can implement a stringent CSP on your website, as it will protect your website even if you miss sanitizing any content. Using CSP you can restrict the source of image and stylesheets. This will ensure that CSS elements are loaded only from trusted servers and not from other domains thus stopping such attacks
