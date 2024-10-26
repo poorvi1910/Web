@@ -4,6 +4,15 @@
   ```
   a text node is the actual text content of an element, but CSS can’t select it independently. Instead, CSS styles can be applied to the parent element to affect its appearance
   ```
+- Goal: To get the authentication token below and only possible injection was the theme parameter which was inside the style tag
+```
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- ... -->
+  <script nonce="...">t="01b275146755aac26d5b2c7821b7c3"</script>
+<!-- ... -->
+```
 
 - The csp
  ```
