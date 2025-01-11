@@ -11,16 +11,18 @@ Does the word secret appear in the user’s search results in another web applic
 ### How this chall uses it
 This challenge is an XS-Leak because it leverages timing differences caused by the processing of invalid input patterns in an HTML <input> element to infer the sensitive admin token (req.cookies.TOKEN)
 
-### Goal:
-To steal an admin token: req.cookies.TOKEN
+### Goal :
+To steal an admin token: req.cookies.TOKEN and the token's format is 6-bytes hex string ([0-9a-f]{12})
 
-### Limitations
-- A given HTML is rendered.
-- {{TOKEN}} in the HTML is once replaced with the token.
-- The token's format is 6-bytes hex string ([0-9a-f]{12}).
+### Limitations :
 - For the html parameter:
   - Length limit: 1024
   - Allowed characters: [\x20-\x7e\r\n]
   - Disallowed substring (case-insensitive): meta, link, src, data, href, svg, :, %, &, \, //
 - CSP: default-src 'none'; base-uri 'none'; frame-ancestors 'none'
 - A new token is issued each time a URL is reported to the admin bot.
+- You need to steal the token within 60 seconds
+
+### Solution
+- **The pattern attribute**:
+  When specified, is a regular expression which the input's value must match for the value to pass constraint validation.
