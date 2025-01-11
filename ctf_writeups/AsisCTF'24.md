@@ -21,8 +21,12 @@ To steal an admin token: req.cookies.TOKEN and the token's format is 6-bytes hex
   - Disallowed substring (case-insensitive): meta, link, src, data, href, svg, :, %, &, \, //
 - CSP: default-src 'none'; base-uri 'none'; frame-ancestors 'none'
 - A new token is issued each time a URL is reported to the admin bot.
-- You need to steal the token within 60 seconds
+- You need to construct a stable oracle to ensure the leak process completes within 60 seconds.
+- An XS-Leak depending on the browser's busy state tends to be unstable and takes a long time.
 
 ### Solution
 - **The pattern attribute**:
+
   When specified, is a regular expression which the input's value must match for the value to pass constraint validation.
+
+  When a user enters data in an input field, the browser checks if the input matches the regular expression in the pattern. This process is computational and can be exploited for ReDoS (Regular Expression Denial of Service) attacks in certain cases.
