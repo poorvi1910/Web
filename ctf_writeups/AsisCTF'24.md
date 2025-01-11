@@ -30,3 +30,47 @@ To steal an admin token: req.cookies.TOKEN and the token's format is 6-bytes hex
   When specified, is a regular expression which the input's value must match for the value to pass constraint validation.
 
   When a user enters data in an input field, the browser checks if the input matches the regular expression in the pattern. This process is computational and can be exploited for ReDoS (Regular Expression Denial of Service) attacks in certain cases.
+
+- Understanding the Components of the Pattern
+  
+   ```
+    <input
+      type="text"
+      pattern=".*(.?){12}[abcd]beaf"
+      value="xxxxx...snip...xxxxx{{TOKEN}}"
+    >
+    ```
+
+  - .* (Match anything, 0 or more characters):
+  This ensures the regex engine can match any input, regardless of the characters before the token.
+  It allows flexibility to handle the padding (xxxxx...snip...xxxxx) used to mask the token in the HTML input field.
+  
+  - (.?){12} (Match exactly 12 characters, each optionally present):
+  This part is tailored to match the exact length of the token, which is a 6-byte hex string ([0-9a-f]{12}).
+  
+  - The .? allows optional characters, which increases the complexity of the regex engine’s evaluation when matching or failing. The {12} ensures that the regex looks for precisely 12 characters, corresponding to the token length.
+    
+  - [abcd] (Match any of the characters a, b, c, or d): This narrows down the possibilities for a specific part of the token, enabling the attacker to check whether the token contains a character from this subset.
+  
+  - beaf (Match the exact string beaf): This checks if the token ends with beaf. If the token doesn't match, the regex engine performs backtracking to reevaluate previous possibilities, causing a measurable delay.
+
+- Why This Specific Pattern?
+
+    - The challenge explicitly states that the token is a 12-character hex string ([0-9a-f]{12}).
+  This allows the attacker to design patterns that match the expected format while testing specific subsets of characters or substrings.
+  
+    - Efficient Testing of Character Sets:
+  
+  Using [abcd] targets a subset of potential token values, allowing the attacker to narrow down possibilities through timing measurements.
+  The attacker can change [abcd] to other subsets (e.g., [efgh], [0123], etc.) to iteratively test the entire character space.
+  
+    - Creating Timing Variations with beaf:
+  
+  By appending a specific string (beaf), the attacker can distinguish between matching and non-matching cases based on how long the regex engine takes to evaluate.
+  A match results in fast evaluation.
+  A mismatch causes the regex engine to backtrack extensively, leading to slow evaluation.
+  
+    - ReDoS-Like Behavior:
+  
+  The .? and {12} create optional matches and repeated patterns, increasing the complexity of the regex.
+  This intentional complexity ensures that timing differences are more pronounced, making it easier to detect matches.
