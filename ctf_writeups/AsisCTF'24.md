@@ -64,13 +64,25 @@ To steal an admin token: req.cookies.TOKEN and the token's format is 6-bytes hex
   Using [abcd] targets a subset of potential token values, allowing the attacker to narrow down possibilities through timing measurements.
   The attacker can change [abcd] to other subsets (e.g., [efgh], [0123], etc.) to iteratively test the entire character space.
   
-    - Creating Timing Variations with beaf:
-  
-  By appending a specific string (beaf), the attacker can distinguish between matching and non-matching cases based on how long the regex engine takes to evaluate.
-  A match results in fast evaluation.
-  A mismatch causes the regex engine to backtrack extensively, leading to slow evaluation.
+    - The beaf part is not fully clear yet
   
     - ReDoS-Like Behavior:
   
   The .? and {12} create optional matches and repeated patterns, increasing the complexity of the regex.
   This intentional complexity ensures that timing differences are more pronounced, making it easier to detect matches.
+
+-
+  ```
+  <input
+    type="text"
+    pattern=".*(.?){12}[abcd]beaf"
+    value="xxxxx...snip...xxxxx{{TOKEN}}"
+  >
+  <iframe></iframe>
+  
+  ```
+  How the <iframe> Helps:
+  
+  The <iframe> element is counted as part of the window.frames or window.length property.
+  When the browser parses and renders the HTML containing the <iframe>, the window.length value increases by 1 after the iframe is fully loaded.
+  This allows the attacker to measure the time it takes for the iframe to "appear" in the DOM, which indirectly correlates to how long the browser takes to validate the pattern in the <input>.
