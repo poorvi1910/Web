@@ -13,6 +13,11 @@ If an attacker can inject LDAP metacharacters into the query, then they can inte
 - (&(cn=D*)(cn=*Smith)) uses the AND logical operator, represented by the & symbol. Matches entries that start with the letter D and end with Smith.
 - (|(cn=David*)(cn=Elisa*)) uses the OR logical operator, represented by the pipe symbol. Matches entries whose common name starts with one of the strings Dave or Elisa.
 
+## Examples of test inputs:
+- Wildcards (*): Test if * returns all results when used in inputs.
+- Logical operators: Try injecting ) or (&) to modify query logic.
+- Invalid characters: Test for characters that may disrupt LDAP syntax, such as (, ), |, or &.
+
 ## Access Control Bypass
 Backend code: ```(&(USER=Uname)(PASSWORD=Pwd))``` <br>
 Injection: ```john90)(&) ```<br>
